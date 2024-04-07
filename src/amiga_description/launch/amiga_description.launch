@@ -1,0 +1,6 @@
+<launch>
+    <!-- Load AMIGA Robot Description -->
+    <param name="robot_description" textfile="$(find amiga_description)/urdf/amiga.urdf" />
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+    
+</launch>
