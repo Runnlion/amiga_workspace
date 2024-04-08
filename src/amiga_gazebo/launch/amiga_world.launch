@@ -28,7 +28,7 @@
   </include>
 
   <!-- Spawn Jackal -->
-  <include file="$(find amiga_control)/launch/spawn_amiga.launch">
+  <include file="$(find amiga_gazebo)/launch/spawn_amiga.launch">
     <arg name="x" value="0" />
     <arg name="y" value="0" />
     <arg name="z" value="1.0" />
