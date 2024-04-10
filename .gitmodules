@@ -1,0 +1,6 @@
+[submodule "src/realsense_gazebo_plugin"]
+	path = src/realsense_gazebo_plugin
+	url = https://github.com/pal-robotics/realsense_gazebo_plugin.git
+[submodule "src/realsense2_description_gazebo"]
+	path = src/realsense2_description_gazebo
+	url = https://github.com/Runnlion/realsense2_description_gazebo.git
