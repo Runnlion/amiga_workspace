@@ -1,6 +1,7 @@
 <launch>
     <!-- Load AMIGA Robot Description -->
-    <param name="robot_description" textfile="$(find amiga_description)/urdf/amiga.urdf" />
+    <!-- <param name="robot_description" textfile="$(find amiga_description)/urdf/amiga.urdf" /> -->
+    <param name="robot_description" command="$(find xacro)/xacro $(find amiga_description)/urdf/amiga.urdf use_nominal_extrinsics:=true add_plug:=true" />
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
     
 </launch>
