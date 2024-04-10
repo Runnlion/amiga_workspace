@@ -1,7 +1,7 @@
 <launch>
   <arg name="x" default="0" />
   <arg name="y" default="0" />
-  <arg name="z" default="1" />
+  <arg name="z" default="1.0" />
   <arg name="yaw" default="0" />
   <arg name="joystick" default="true" />
 
@@ -22,10 +22,16 @@
   </include> -->
 
   <!-- Spawn Jackal -->
+  <arg name="sdf_robot_file" default="$(find amiga_gazebo)/models/farmland_1/farmland_1.sdf"/>
+  <arg name="robot_name" default="FramLand"/>
+
+  <node name="$(arg robot_name)_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_robot_file) -sdf -x 0 -y 0 -z 0 -R 0 -P 0 -Y 0 -model $(arg robot_name)"/>
+
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
 	      args="-urdf -model amiga -param robot_description -x $(arg x) -y $(arg y) -z $(arg z) -R 0 -P 0 -Y $(arg yaw)" />
         
   <node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server">
     <param name="link_name" value="base_link" />
   </node>
+
 </launch>
