@@ -1,5 +1,6 @@
 <?xml version="1.0" ?>
-<robot name="robot_with_wheels">
+<robot name="robot_with_wheels" xmlns:xacro="http://ros.org/wiki/xacro">
+    
     <material name="dark_grey">
         <color rgba="  0.2 0.2 0.2 1.0"/>
     </material>
@@ -86,7 +87,7 @@
             </geometry>
         </collision>
         <inertial>
-            <mass value="40" />
+            <mass value="15" />
             <origin xyz="0 0 0" rpy="0 0 0" />
             <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
         </inertial>
@@ -205,7 +206,7 @@
             </geometry>
         </collision>
         <inertial>
-            <mass value="40" />
+            <mass value="15" />
             <origin xyz="0 0 0" rpy="0 0 0" />
             <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
         </inertial>
@@ -353,7 +354,7 @@
             <origin xyz="0 0 0" rpy="0 3.1415926 0" />
         </collision>
         <inertial>
-            <mass value="40" />
+            <mass value="15" />
             <origin xyz="0 0 0" rpy="0 0 0" />
             <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
         </inertial>
@@ -434,7 +435,7 @@
             <origin xyz="0 0 0" rpy="0 3.1415926 0" />
         </collision>
         <inertial>
-            <mass value="40" />
+            <mass value="15" />
             <origin xyz="0 0 0" rpy="0 0 0" />
             <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
         </inertial>
@@ -640,7 +641,7 @@
         </actuator>
     </transmission>
 
-    <!-- Add the Laser Scanner -->
+    <!-- Add the hector Single Ray Laser -->
     <link name="front_laser">
         <inertial>
             <mass value="1.1"/>
@@ -661,7 +662,6 @@
             </geometry>
         </collision>    
     </link>
-
     <gazebo reference="front_laser">
         <turnGravityOff>true</turnGravityOff>
         <sensor name="front_laser" type="ray">
@@ -672,14 +672,11 @@
             <scan>
                 <horizontal>
                     <samples>720</samples>
-
                     <resolution>1</resolution>
                     <min_angle>-2.35619</min_angle>
-
                     <max_angle>2.35619</max_angle>
                 </horizontal>
             </scan>
-
             <range>
                 <min>0.1</min>
                 <max>30.0</max>
@@ -698,13 +695,11 @@
             </plugin>
         </sensor>
     </gazebo>
-    
     <joint name="front_laser_mount_joint" type="fixed">
         <origin rpy="0 0 0" xyz="0 0 0.03"/>
         <parent link="front_center"/>
         <child link="front_laser_mount"/>
     </joint>
-
     <link name="front_laser_mount">
         <visual>
         <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -804,20 +799,42 @@
         <parent link="front_center"/>
         <child link="imu_link"/>
     </joint>
-    <gazebo>
+
+    <!-- <gazebo>
         <plugin filename="libhector_gazebo_ros_imu.so" name="imu_controller">
             <robotNamespace>/</robotNamespace>
-            <updateRate>50.0</updateRate>
+            <updateRate>100.0</updateRate>
             <bodyName>imu_link</bodyName>
             <topicName>imu/data</topicName>
-            <accelDrift>0.005 0.005 0.005</accelDrift>
-            <accelGaussianNoise>0.005 0.005 0.005</accelGaussianNoise>
-            <rateDrift>0.005 0.005 0.005 </rateDrift>
-            <rateGaussianNoise>0.005 0.005 0.005 </rateGaussianNoise>
+            <accelDrift>0.0001 0.0001 0.0001</accelDrift>
+            <accelGaussianNoise>0.0001 0.0001 0.0001</accelGaussianNoise>
+            <rateDrift>0.0001 0.0001 0.0001 </rateDrift>
+            <rateGaussianNoise>0.0001 0.0001 0.0001 </rateGaussianNoise>
             <headingDrift>0.005</headingDrift>
             <headingGaussianNoise>0.005</headingGaussianNoise>
         </plugin>
+    </gazebo> -->
+    <gazebo reference="imu_link">
+        <gravity>true</gravity>
+        <sensor name="imu_sensor" type="imu">
+        <always_on>true</always_on>
+        <update_rate>100</update_rate>
+        <visualize>true</visualize>
+        <topic>__default_topic__</topic>
+        <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+            <topicName>imu</topicName>
+            <bodyName>imu_link</bodyName>
+            <updateRateHZ>100.0</updateRateHZ>
+            <gaussianNoise>0.0</gaussianNoise>
+            <xyzOffset>0 0 0</xyzOffset>
+            <rpyOffset>0 0 0</rpyOffset>
+            <frameName>imu_link</frameName>
+            <initialOrientationAsReference>false</initialOrientationAsReference>
+        </plugin>
+        <pose>0 0 0 0 0 0</pose>
+        </sensor>
     </gazebo>
+
     <!-- Add GPS simulation library -->
     <link name="navsat_link">
         <visual>
@@ -854,5 +871,15 @@
     </gazebo>
 
 
+    <!-- Add the Left Depth Camera -->
+  <xacro:include filename="$(find realsense2_description_gazebo)/urdf/_d435.urdf.xacro" />
+
+  <xacro:sensor_d435 name="camera_left" topics_ns="camera_left" parent="front_center" publish_pointcloud="true">
+    <origin xyz="0.0 0.5 0.03" rpy="0 0 0" />
+  </xacro:sensor_d435>  
+
+  <xacro:sensor_d435 name="camera_right" topics_ns="camera_right" parent="front_center" publish_pointcloud="true">
+    <origin xyz="0.0 -0.5 0.03" rpy="0 0 0" />
+  </xacro:sensor_d435>  
 </robot>
 
