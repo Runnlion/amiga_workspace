@@ -3,3 +3,5 @@
 .vscode/**
 .catkin_workspace
 token
+bag/**
+/results/** 
