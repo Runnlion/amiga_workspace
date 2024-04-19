@@ -29,7 +29,7 @@
     <!-- <arg name="world_name" value="$(arg world_name)" /> -->
   </include>
 
-  <!-- Spawn Jackal -->
+  <!-- Spawn Amiga (UGV) -->
   <include file="$(find amiga_gazebo)/launch/spawn_amiga.launch">
     <arg name="x" value="0" />
     <arg name="y" value="0" />
@@ -37,4 +37,17 @@
     <arg name="yaw" value="0" />
     <arg name="joystick" value="$(arg joystick)" />
   </include>
+
+  <!-- Spawn Framland (land + plants) -->
+  <include file="$(find amiga_gazebo)/launch/spawn_farmland.launch">
+    <arg name="x" value="28.75" />
+    <arg name="y" value="-5.0" />
+    <arg name="z" value="0.25" />
+    <arg name="yaw" value="0.087164" />
+  </include>
+
+  <!-- Launch twist server (Controlling in RViz) -->
+  <node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server">
+    <param name="link_name" value="base_link" />
+  </node>
 </launch>

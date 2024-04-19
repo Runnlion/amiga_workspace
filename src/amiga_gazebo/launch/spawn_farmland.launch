@@ -1,0 +1,72 @@
+<launch>
+    <arg name="x" value="28.75" />
+    <arg name="y" value="-5.0" />
+    <arg name="z" value="0.45" />
+    <arg name="yaw" value="0.087164" />
+
+    <!-- Spawn Farmland Level -->
+    <arg name="sdf_farmland" default="$(find amiga_gazebo)/models/farmland_1/farmland_1.sdf"/>
+    <arg name="farmland_model_name" default="FramLand"/>
+    <node name="$(arg farmland_model_name)_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_farmland) -sdf -x $(arg x) -y $(arg y) -z $(arg z) -R 0 -P 0 -Y $(arg yaw) -model $(arg farmland_model_name)"/>
+
+    <arg name="sdf_barrier_white" default="$(find amiga_gazebo)/models/drc_practice_white_jersey_barrier/model.sdf"/>
+    <arg name="sdf_barrier_orange" default="$(find amiga_gazebo)/models/drc_practice_orange_jersey_barrier/model.sdf"/>
+    <node name="white_barrier_0_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_white) -sdf -x 71.8541 -y 24.9076 -z 0.85 -R 0 -P 0 -Y 0.0 -model white_barrier_0"/>
+    <node name="orange_barrier_0_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_orange) -sdf -x 71.6996 -y 23.0838 -z 0.85 -R 0 -P 0 -Y 0.0 -model orange_barrier_0"/>
+    <node name="white_barrier_1_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_white) -sdf -x 71.6826 -y 21.3409 -z 0.85 -R 0 -P 0 -Y 0.0 -model white_barrier_1"/>
+    <node name="orange_barrier_1_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_orange) -sdf -x 71.6727 -y 19.6013 -z 0.85 -R 0 -P 0 -Y 0.0 -model orange_barrier_1"/>
+    <node name="white_barrier_2_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_white) -sdf -x 71.6656 -y 17.8502 -z 0.85 -R 0 -P 0 -Y 0.0 -model white_barrier_2"/>
+    <node name="orange_barrier_2_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_orange) -sdf -x 71.6589 -y 16.1096 -z 0.85 -R 0 -P 0 -Y 0.0 -model orange_barrier_2"/>
+    <node name="white_barrier_3_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_white) -sdf -x 71.6501 -y 14.3592 -z 0.85 -R 0 -P 0 -Y 0.0 -model white_barrier_3"/>
+    <node name="orange_barrier_3_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_orange) -sdf -x 71.6387 -y 12.6221 -z 0.85 -R 0 -P 0 -Y 0.0 -model orange_barrier_3"/>
+    <node name="white_barrier_4_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_white) -sdf -x 71.632 -y 10.8735 -z 0.85 -R 0 -P 0 -Y 0.0 -model white_barrier_4"/>
+    <node name="orange_barrier_4_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_orange) -sdf -x 71.6255 -y 9.12889 -z 0.85 -R 0 -P 0 -Y 0.0 -model orange_barrier_4"/>
+    <node name="white_barrier_5_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_white) -sdf -x 71.6246 -y 7.3814 -z 0.85 -R 0 -P 0 -Y 0.0 -model white_barrier_5"/>
+    <node name="orange_barrier_5_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_orange) -sdf -x 71.62 -y 5.63535 -z 0.85 -R 0 -P 0 -Y 0.0 -model orange_barrier_5"/>
+    <node name="white_barrier_6_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_white) -sdf -x 71.6199 -y 3.88555 -z 0.85 -R 0 -P 0 -Y 0.0 -model white_barrier_6"/>
+    <node name="orange_barrier_6_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_orange) -sdf -x 71.6079 -y 2.14539 -z 0.85 -R 0 -P 0 -Y 0.0 -model orange_barrier_6"/>
+    <node name="white_barrier_7_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_white) -sdf -x 71.6005 -y 0.396889 -z 0.85 -R 0 -P 0 -Y 0.0 -model white_barrier_7"/>
+    <node name="white_barrier_8_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_white) -sdf -x 70.9692 -y 26.7842 -z 0.85 -R 0 -P 0 -Y -1.5708 -model white_barrier_8"/>
+    <node name="orange_barrier_7_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_orange) -sdf -x 68.7091 -y 26.8065 -z 0.85 -R 0 -P 0 -Y -1.5708 -model orange_barrier_7"/>
+    <node name="white_barrier_9_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_white) -sdf -x 67.1446 -y 26.9316 -z 0.85 -R 0 -P 0 -Y -1.5708 -model white_barrier_9"/>
+    <node name="orange_barrier_8_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_orange) -sdf -x 65.3989 -y 26.9299 -z 0.85 -R 0 -P 0 -Y -1.5708 -model orange_barrier_8"/>
+    <node name="white_barrier_10_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_white) -sdf -x 63.6593 -y 26.9384 -z 0.85 -R 0 -P 0 -Y -1.5708 -model white_barrier_10"/>
+    <node name="orange_barrier_9_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_orange) -sdf -x 61.9171 -y 26.9366 -z 0.85 -R 0 -P 0 -Y -1.5708 -model orange_barrier_9"/>
+    <node name="white_barrier_11_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_white) -sdf -x 60.1789 -y 26.937 -z 0.85 -R 0 -P 0 -Y -1.5708 -model white_barrier_11"/>
+    <node name="orange_barrier_10_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_orange) -sdf -x 58.4402 -y 26.9344 -z 0.85 -R 0 -P 0 -Y -1.5708 -model orange_barrier_10"/>
+    <node name="white_barrier_12_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_white) -sdf -x 56.7081 -y 26.9391 -z 0.85 -R 0 -P 0 -Y -1.5708 -model white_barrier_12"/>
+    <node name="orange_barrier_11_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_orange) -sdf -x 54.9667 -y 26.9441 -z 0.85 -R 0 -P 0 -Y -1.5708 -model orange_barrier_11"/>
+    <node name="white_barrier_13_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_white) -sdf -x 53.2245 -y 26.9447 -z 0.85 -R 0 -P 0 -Y -1.5708 -model white_barrier_13"/>
+    <node name="orange_barrier_12_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_orange) -sdf -x 51.486 -y 26.9505 -z 0.85 -R 0 -P 0 -Y -1.5708 -model orange_barrier_12"/>
+    <node name="white_barrier_14_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_white) -sdf -x 49.7323 -y 26.948 -z 0.85 -R 0 -P 0 -Y -1.5708 -model white_barrier_14"/>
+    <node name="orange_barrier_13_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_orange) -sdf -x 47.9831 -y 26.9378 -z 0.85 -R 0 -P 0 -Y -1.5708 -model orange_barrier_13"/>
+    <node name="white_barrier_15_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_white) -sdf -x 46.2494 -y 26.9177 -z 0.85 -R 0 -P 0 -Y -1.5708 -model white_barrier_15"/>
+    <node name="orange_barrier_14_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_orange) -sdf -x 44.497 -y 26.9304 -z 0.85 -R 0 -P 0 -Y -1.5708 -model orange_barrier_14"/>
+    <node name="white_barrier_16_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_white) -sdf -x 42.7602 -y 26.9374 -z 0.85 -R 0 -P 0 -Y -1.5708 -model white_barrier_16"/>
+    <node name="orange_barrier_15_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_orange) -sdf -x 41.0065 -y 26.9509 -z 0.85 -R 0 -P 0 -Y -1.5708 -model orange_barrier_15"/>
+    <node name="white_barrier_17_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_white) -sdf -x 39.2359 -y 26.9565 -z 0.85 -R 0 -P 0 -Y -1.5708 -model white_barrier_17"/>
+    <node name="orange_barrier_16_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_orange) -sdf -x 37.4778 -y 26.9602 -z 0.85 -R 0 -P 0 -Y -1.5708 -model orange_barrier_16"/>
+    <node name="white_barrier_18_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_white) -sdf -x 35.7416 -y 26.9725 -z 0.85 -R 0 -P 0 -Y -1.5708 -model white_barrier_18"/>
+    <node name="orange_barrier_17_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_orange) -sdf -x 33.9965 -y 26.979 -z 0.85 -R 0 -P 0 -Y -1.5708 -model orange_barrier_17"/>
+    <node name="white_barrier_19_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_white) -sdf -x 32.2509 -y 26.9759 -z 0.85 -R 0 -P 0 -Y -1.5708 -model white_barrier_19"/>
+    <node name="orange_barrier_18_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_orange) -sdf -x 30.5118 -y 26.9739 -z 0.85 -R 0 -P 0 -Y -1.5708 -model orange_barrier_18"/>
+    <node name="white_barrier_20_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_white) -sdf -x 28.7625 -y 26.974 -z 0.85 -R 0 -P 0 -Y -1.5708 -model white_barrier_20"/>
+    <node name="orange_barrier_19_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_orange) -sdf -x 27.013 -y 26.9721 -z 0.85 -R 0 -P 0 -Y -1.5708 -model orange_barrier_19"/>
+    <node name="white_barrier_21_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_white) -sdf -x 25.2607 -y 26.988 -z 0.85 -R 0 -P 0 -Y -1.5708 -model white_barrier_21"/>
+    <node name="orange_barrier_20_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_orange) -sdf -x 23.5045 -y 26.9856 -z 0.85 -R 0 -P 0 -Y -1.5708 -model orange_barrier_20"/>
+    <node name="white_barrier_22_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_white) -sdf -x 21.7698 -y 26.981 -z 0.85 -R 0 -P 0 -Y -1.5708 -model white_barrier_22"/>
+    <node name="orange_barrier_21_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_orange) -sdf -x 20.015 -y 26.9863 -z 0.85 -R 0 -P 0 -Y -1.5708 -model orange_barrier_21"/>
+    <node name="white_barrier_23_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_white) -sdf -x 18.2701 -y 26.9925 -z 0.85 -R 0 -P 0 -Y -1.5708 -model white_barrier_23"/>
+    <node name="orange_barrier_22_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_orange) -sdf -x 16.516 -y 26.9941 -z 0.85 -R 0 -P 0 -Y -1.5708 -model orange_barrier_22"/>
+    <node name="white_barrier_24_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_white) -sdf -x 14.7748 -y 26.9854 -z 0.85 -R 0 -P 0 -Y -1.5708 -model white_barrier_24"/>
+    <node name="orange_barrier_23_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_orange) -sdf -x 13.0236 -y 26.9836 -z 0.85 -R 0 -P 0 -Y -1.5708 -model orange_barrier_23"/>
+    <node name="white_barrier_25_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_white) -sdf -x 11.2725 -y 26.9731 -z 0.85 -R 0 -P 0 -Y -1.5708 -model white_barrier_25"/>
+    <node name="orange_barrier_24_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_orange) -sdf -x 9.52745 -y 26.9782 -z 0.85 -R 0 -P 0 -Y -1.5708 -model orange_barrier_24"/>
+    <node name="white_barrier_26_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_white) -sdf -x 7.77791 -y 26.973 -z 0.85 -R 0 -P 0 -Y -1.5708 -model white_barrier_26"/>
+    <node name="orange_barrier_25_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_orange) -sdf -x 6.02986 -y 26.9775 -z 0.85 -R 0 -P 0 -Y -1.5708 -model orange_barrier_25"/>
+    <node name="white_barrier_27_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_white) -sdf -x 4.28981 -y 26.9719 -z 0.85 -R 0 -P 0 -Y -1.5708 -model white_barrier_27"/>
+    <node name="orange_barrier_26_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_orange) -sdf -x 2.54809 -y 26.9737 -z 0.85 -R 0 -P 0 -Y -1.5708 -model orange_barrier_26"/>
+    <node name="white_barrier_28_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_white) -sdf -x 0.799276 -y 26.9734 -z 0.85 -R 0 -P 0 -Y -1.5708 -model white_barrier_28"/>
+    <node name="orange_barrier_27_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_orange) -sdf -x -0.944841 -y 26.9728 -z 0.85 -R 0 -P 0 -Y -1.5708 -model orange_barrier_27"/>
+    <node name="white_barrier_29_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_white) -sdf -x -2.69126 -y 26.9851 -z 0.85 -R 0 -P 0 -Y -1.5708 -model white_barrier_29"/>
+</launch>
