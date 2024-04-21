@@ -23,11 +23,16 @@ echo 'source /mnt/Data/amiga_workspace/devel/setup.bash' >> ~/.bashrc
 * IMU Sensor
 * GPS Sensor
 
+* 20240421:
+    * New Feature: Automatically plant generating with height adjustments. 
+    * Optimize the launch file and passthrough more parameters.
+    * ![Screenshot from 2024-04-21 11-24-07](https://hackmd.io/_uploads/S12AMYz-0.png)
+    * ![Screenshot from 2024-04-21 13-13-30](https://hackmd.io/_uploads/H1he7YG-A.png)
 
 ## TODO
 
 - [ ] Change Amiga Model Size to 26 inch width
-- [ ] Add tomato plant trees in this model
+- [X] Add tomato plant trees in this model
 - [ ] Sensor Fusion ?
 
 
