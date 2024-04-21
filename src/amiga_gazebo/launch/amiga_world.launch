@@ -18,7 +18,6 @@
 
   <!-- Optionally enable teleop for the simulation -->
   <arg name="joystick" default="false" />
-
   <!-- Launch Gazebo with the specified world -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="debug" value="0" />
@@ -44,7 +43,15 @@
     <arg name="y" value="-5.0" />
     <arg name="z" value="0.25" />
     <arg name="yaw" value="0.087164" />
+    <arg name="generate_barriers" value="true" />
   </include>
+
+  <node name="tomato_generating_node" pkg="amiga_gazebo" type="generate_tomato_and_spawn.py" output="screen">
+      <param name="row_number" value="8"/>
+      <param name="plant_num_per_row" value="10"/>
+      <param name="plant_yaw_seed" value="20"/>
+      <param name="terrain_z_offset" value="0.25"/>
+  </node>
 
   <!-- Launch twist server (Controlling in RViz) -->
   <node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server">
