@@ -17,7 +17,10 @@ import rospy
 rospy.init_node('level_downloadar',anonymous=False) #run only one script
 
 # Paste the meshes links.
-meshes_info = {"farmland_1.zip":['https://drive.usercontent.google.com/download?id=126MiSVtfPnfEBenBNzT2mwYvya0r-Vk_&export=download&authuser=0&confirm=t&uuid=24a3aa35-4d7f-4960-9a3e-7857bdf9d954&at=APZUnTXCA6zO3OOu3LKj3HxJgaeX:1712758042393','a5efad7764a283f82ad5e67d767a5d24']}
+meshes_info = {"farmland_1.zip":['https://drive.usercontent.google.com/download?id=126MiSVtfPnfEBenBNzT2mwYvya0r-Vk_&export=download&authuser=0&confirm=t&uuid=24a3aa35-4d7f-4960-9a3e-7857bdf9d954&at=APZUnTXCA6zO3OOu3LKj3HxJgaeX:1712758042393','a5efad7764a283f82ad5e67d767a5d24'],
+               "drc_practice_orange_jersey_barrier.zip":['https://drive.google.com/uc?id=1ZYzXa8ILox5ygAPa_7KC_wAVyjxvqjTs&export=download&confirm=t','f49cb48ae1020bda724ff7ddb19c7a1f'],
+               "drc_practice_white_jersey_barrier.zip":['https://drive.google.com/uc?id=1v56bcB5A6Q5ZgmdIGLlpSj1lIcoQtUnA&export=download&confirm=t','f944926dff3366e9289f31fc98dafccf']}
+
 
 import os
 from subprocess import call
