@@ -16,12 +16,14 @@
 #   1. A tomato tree model with specific layout
 #   2. Automatically Call a subprocess to spawn these plants.
 
-import rospkg
-from pathlib import Path
-import random
-import xml.etree.ElementTree as ET
-import rospy
 
+import rospy
+import rospkg
+import random
+import numpy as np
+import open3d as o3d
+from pathlib import Path
+import xml.etree.ElementTree as ET
 
 class Generate_tomato_tree:
     def __init__(self) -> None:
@@ -53,6 +55,11 @@ class Generate_tomato_tree:
         self.sdf_name = 'plant_rows'
         self.Amiga_Gazebo_Path = rospkg.RosPack().get_path('amiga_gazebo')
         self.Amiga_Gazebo_Model_Path = str(Path(self.Amiga_Gazebo_Path).resolve()) + '/models/'
+        self.obj_file_path = self.Amiga_Gazebo_Model_Path + 'farmland_1/meshes/model.obj'
+        self.load_mesh()
+        self.z_offset_from_model = 5.0
+        self.z_offset_from_manual = self.terrain_level
+        self.z_offset_total = self.z_offset_from_model + self.z_offset_from_manual
 
     def make_directory(self)->None:
         from pathlib import Path
@@ -131,8 +138,12 @@ class Generate_tomato_tree:
             dz:float = 0.0
             for plant_id in range(1, self.plant_num+1):
                 yaw = random.uniform(-1.57, 1.57)
+                x = start_pt[0] + dx*(plant_id-1)
+                y = start_pt[1] + dy*(plant_id-1)
+                z = self.find_z_value(x,y)
+                rospy.loginfo(f"Estimated Height Plant_{row_num}_{plant_id} = {z}")
                 self.add_plant_instance(f"plant_{row_num}_{plant_id}", 
-                                        f"{start_pt[0] + dx*(plant_id-1)} {start_pt[1] + dy*(plant_id-1)} {start_pt[2]} 1.5708 0 {yaw}")
+                                        f"{x} {y} {z} 1.57 0 {yaw}")
 
         import xml.dom.minidom
         # Convert XML tree to string
@@ -146,6 +157,7 @@ class Generate_tomato_tree:
         # Write to file
         with open(f"{self.Amiga_Gazebo_Model_Path}/{self.model_name}_{self.seed_val}/{self.sdf_name}.sdf", "w") as file:
             file.write(pretty_xml)
+    
     # Create a function to add a plant instance
     def add_plant_instance(self, link_name, pose):
         link = ET.SubElement(self.sdf_model, "link")
@@ -214,14 +226,24 @@ class Generate_tomato_tree:
         import subprocess
         subprocess.call(f"rosrun gazebo_ros spawn_model -file {self.Amiga_Gazebo_Model_Path}/{self.model_name}_{self.seed_val}/{self.sdf_name}.sdf -sdf -x 0 -y 0 -z 0 -R 0 -P 0 -Y 0 -model combained_plants", shell=True)
         
+    def find_z_value(self, x, y)->float:
+        z = -y
+        # Find the nearest vertices
+        distances = np.sqrt(np.sum((self.vertices[:, [0, 2]] - [x, z]) ** 2, axis=1))
+        nearest_vertex_indices = np.argsort(distances)[:10]  # Consider the three nearest vertices
+        # Perform linear interpolation
+        nearest_vertices = self.vertices[nearest_vertex_indices]
+        z_values = nearest_vertices[:, 1]
+        estimated_z = np.mean(z_values) + self.z_offset_total
+        return estimated_z 
 
-
+    def load_mesh(self):
+        self.mesh = o3d.io.read_triangle_mesh(self.obj_file_path)
+        self.vertices = np.asarray(self.mesh.vertices)
 if __name__ == '__main__':
     rospy.init_node('tomato_tree_generating_node')
     gtt = Generate_tomato_tree()
-
     gtt.make_directory()
     gtt.generate_model_config()
     gtt.generate_plants()
-
     gtt.spawn()
