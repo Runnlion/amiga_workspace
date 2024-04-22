@@ -13,12 +13,16 @@ amiga_velocity_controller:
 
   # Wheel separation and radius multipliers
   wheel_separation_multiplier: 1.0 # default: 1.0
-  wheel_radius_multiplier    : 0.47 # default: 1.0
-  wheel_radius: 0.45
-  wheel_separation : 2.015 #Distance between left and right
+  wheel_radius_multiplier    : 1.0 # default: 1.0
+  wheel_radius: 0.215 #  RADIUS !!!!!!
+  wheel_separation : 1.0 #Distance between left and right
 
+  # 0.2 -> 1.08
+  # 0.25 -> 0.86
+  # 0.05 -> delta = 0.22
+  # (0.25 - 0.14/0.22 * 0.05) <- 1.00
   k_l: 0.1
-  k_r: 0.1
+  k_r: 0.1 
 
   # Odometry fused with IMU is published by robot_localization, so
   # no need to publish a TF based on encoders alone.
@@ -35,13 +39,13 @@ amiga_velocity_controller:
   linear:
     x:
       has_velocity_limits    : true
-      max_velocity           : 20.0   # m/s
+      max_velocity           : 10.0   # m/s
       has_acceleration_limits: true
-      max_acceleration       : 20.0   # m/s^2
+      max_acceleration       : 1.0   # m/s^2
   angular:
     z:
       has_velocity_limits    : true
       max_velocity           : 4.0   # rad/s
       has_acceleration_limits: true
-      max_acceleration       : 25.0   # rad/s^2
+      max_acceleration       : 10.0   # rad/s^2
 

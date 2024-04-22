@@ -1,6 +1,7 @@
 <?xml version="1.0" ?>
 <robot name="robot_with_wheels" xmlns:xacro="http://ros.org/wiki/xacro">
     
+    <!-- Define mateiral RGBA -->
     <material name="dark_grey">
         <color rgba="  0.2 0.2 0.2 1.0"/>
     </material>
@@ -14,16 +15,21 @@
         <color rgba="0.15 0.15 0.15 1.0"/>
     </material>
     <material name="aluminum">
-    <color rgba="0.8 0.85 0.88 1"/> <!-- Adjust the RGBA values as needed -->
+        <color rgba="0.8 0.85 0.88 1"/> <!-- Adjust the RGBA values as needed -->
     </material>
-
     <material name="white">
         <color rgba="1.0 1.0 1.0 1.0"/>
     </material>
 
+    <xacro:property name="wheel_weight" value="100" />
+    <xacro:property name="wheel_radius" value="0.215" />
+    <xacro:property name="wheel_width" value="0.14" />
+
+    <xacro:property name="smartfork_weight" value="0.001" />
+
     <link name="base_link"/>
     <joint name="base_link_joint" type="fixed">
-        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <origin rpy="0 0 0" xyz="0.5 0 0"/>
         <parent link="base_link"/>
         <child link="chassis_link"/>
     </joint>
@@ -37,8 +43,8 @@
     </joint>
     <link name="front_center" />
     <!-- Define origin for the front_center frame -->
-    <joint name="front_center_joint" type="fixed">
-        <origin xyz="0 -1.0 0" rpy="1.5708 0 0" />
+    <joint name="front_center_to_smartfork3_joint" type="fixed">
+        <origin xyz="0 -0.5 0" rpy="1.5708 0 0" />
         <parent link="front_center" />
         <child link="smartfork3" />
     </joint>
@@ -57,16 +63,23 @@
             </geometry>
         </collision>
         <inertial>
-            <mass value="15" />
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
+            <mass value="${wheel_weight}" />
+            <origin xyz="0 0.0 0" rpy="0 0 0" />
+            <inertia ixx="${(1/12) * wheel_weight * (3 * wheel_radius * wheel_radius + wheel_width * wheel_width)}" 
+                    iyy="${(1/12) * wheel_weight * (3 * wheel_radius * wheel_radius + wheel_width * wheel_width)}" 
+                    izz="${(1/2) * wheel_weight * wheel_radius * wheel_radius}" 
+                    ixy="0.0" 
+                    ixz="0.0" 
+                    iyz="0.0"/>
         </inertial>
     </link>
     <gazebo reference="wheel3">
         <material>Gazebo/DarkGrey</material>
         <selfCollide>false</selfCollide>
-        <mu1 value="0.5" />
-        <mu2 value="0.5" />
+        <mu1 value="0.3" />
+        <mu2 value="0.3" />
+        <slip1 value="0" />
+        <slip2 value="0" />
         <kp value="10000000.0" />
         <kd value="1" />
         <fdir1 value="1 0 0" />
@@ -87,7 +100,7 @@
             </geometry>
         </collision>
         <inertial>
-            <mass value="15" />
+            <mass value="${smartfork_weight}" />
             <origin xyz="0 0 0" rpy="0 0 0" />
             <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
         </inertial>
@@ -128,11 +141,11 @@
             </geometry>
             <origin rpy="1.5708 0.0 0.0" xyz="-0.5 0 0" />
         </collision>
-        <inertial>
-            <mass value="0.1" />
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
-        </inertial>
+        <!-- <inertial>
+            <mass value="3.888" />
+            <origin rpy="1.5708 0.0 0.0" xyz="0.1 0.02 0.015" />
+            <inertia ixx="0.00151304" iyy="0.00371216" izz="0.00371216" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial> -->
     </link>
     <link name="rig_34_right">
         <visual>
@@ -148,11 +161,11 @@
             </geometry>
             <origin rpy="1.5708 0.0 0.0" xyz="-0.5 0 0" />
         </collision>
-        <inertial>
-            <mass value="0.1" />
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
-        </inertial>
+        <!-- <inertial>
+            <mass value="3.888" />
+            <origin rpy="1.5708 0.0 0.0" xyz="0.1 0.02 0.015" />
+            <inertia ixx="0.00151304" iyy="0.00371216" izz="0.00371216" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial> -->
     </link>
     <joint name="rig34_right" type="fixed">
         <parent link="smartfork3" />
@@ -179,19 +192,29 @@
             </geometry>
         </collision>
         <inertial>
-            <mass value="15" />
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
+            <mass value="${wheel_weight}" />
+            <origin xyz="0 0.0 0" rpy="0 0 0" />
+            <inertia ixx="${(1/12) * wheel_weight * (3 * wheel_radius * wheel_radius + wheel_width * wheel_width)}" 
+                    iyy="${(1/12) * wheel_weight * (3 * wheel_radius * wheel_radius + wheel_width * wheel_width)}" 
+                    izz="${(1/2) * wheel_weight * wheel_radius * wheel_radius}" 
+                    ixy="0.0" 
+                    ixz="0.0" 
+                    iyz="0.0"/>
         </inertial>
     </link>
     <gazebo reference="wheel4">
         <material>Gazebo/DarkGrey</material>
         <selfCollide>false</selfCollide>
-        <mu1 value="0.5" />
-        <mu2 value="0.5" />
+        <mu1 value="0.3" />
+        <mu2 value="0.3" />
+        <slip1 value="0" />
+        <slip2 value="0" />
         <kp value="10000000.0" />
         <kd value="1" />
         <fdir1 value="1 0 0" />
+        <plugin name="gazebo_ros_control">
+            <robotNamespace>/</robotNamespace>
+        </plugin>
     </gazebo>
     <link name="smartfork4">
         <visual>
@@ -206,7 +229,7 @@
             </geometry>
         </collision>
         <inertial>
-            <mass value="15" />
+            <mass value="${smartfork_weight}" />
             <origin xyz="0 0 0" rpy="0 0 0" />
             <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
         </inertial>
@@ -268,27 +291,27 @@
     <link name="rig_13">
         <visual>
             <geometry>
-                <box size="0.04 0.02 2.0" />
+                <box size="0.04 0.02 1.0" />
             </geometry>
             <origin rpy="0 0.0 0.0" xyz="0 0.02 0" />
             <material name="aluminum"/>
         </visual>
         <collision>
             <geometry>
-                <box size="0.04 0.02 2.0" />
+                <box size="0.04 0.02 1.0" />
             </geometry>
             <origin rpy="0 0.0 0.0" xyz="0 0.02 0" />
         </collision>
-        <inertial>
-            <mass value="0.1" />
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
-        </inertial>
+        <!-- <inertial>
+            <mass value="2.16" />
+            <origin xyz="0.02 0.03 0.5" rpy="0 0 0" />
+            <inertia ixx="0.0156" iyy="0.0156" izz="0.0012" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial> -->
     </link>
     <joint name="rig_13_joint" type="fixed">
         <parent link="link3_connector" />
         <child link="rig_13" />
-        <origin xyz="0 0 -1.0" rpy="0 0 0" />
+        <origin xyz="0 0 -0.5" rpy="0 0 0" />
     </joint>
     <link name="link4_connector">
         <visual>
@@ -317,27 +340,27 @@
     <link name="rig_24">
         <visual>
             <geometry>
-                <box size="0.04 0.02 2.0" />
+                <box size="0.04 0.02 1.0" />
             </geometry>
             <origin rpy="0 0.0 0.0" xyz="0 0.02 0" />
             <material name="aluminum"/>
         </visual>
         <collision>
             <geometry>
-                <box size="0.04 0.02 2.0" />
+                <box size="0.04 0.02 1.0" />
             </geometry>
             <origin rpy="0 0.0 0.0" xyz="0 0.02 0" />
         </collision>
-        <inertial>
-            <mass value="0.1" />
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
-        </inertial>
+        <!-- <inertial>
+            <mass value="2.16" />
+            <origin xyz="0.02 0.03 0.5" rpy="0 0 0" />
+            <inertia ixx="0.0156" iyy="0.0156" izz="0.0012" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial> -->
     </link>
     <joint name="rig_24_joint" type="fixed">
         <parent link="link4_connector" />
         <child link="rig_24" />
-        <origin xyz="0 0 -1.0" rpy="0 0 0" />
+        <origin xyz="0 0 -0.5" rpy="0 0 0" />
     </joint>
     <link name="smartfork1">
         <visual>
@@ -354,13 +377,13 @@
             <origin xyz="0 0 0" rpy="0 3.1415926 0" />
         </collision>
         <inertial>
-            <mass value="15" />
+            <mass value="${smartfork_weight}" />
             <origin xyz="0 0 0" rpy="0 0 0" />
             <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
         </inertial>
     </link>
-    <joint name="world_joint_fork1" type="fixed">
-        <origin xyz="0 1.0 0" rpy="1.5708 0 0" />
+    <joint name="front_center_to_smartfork1_joint" type="fixed">
+        <origin xyz="0 0.5 0" rpy="1.5708 0 0" />
         <parent link="front_center" />
         <child link="smartfork1" />
     </joint>
@@ -380,19 +403,29 @@
             </geometry>
         </collision>
         <inertial>
-            <mass value="15" />
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
+            <mass value="${wheel_weight}" />
+            <origin xyz="0 0.0 0" rpy="0 0 0" />
+            <inertia ixx="${(1/12) * wheel_weight * (3 * wheel_radius * wheel_radius + wheel_width * wheel_width)}" 
+                    iyy="${(1/12) * wheel_weight * (3 * wheel_radius * wheel_radius + wheel_width * wheel_width)}" 
+                    izz="${(1/2) * wheel_weight * wheel_radius * wheel_radius}" 
+                    ixy="0.0" 
+                    ixz="0.0" 
+                    iyz="0.0"/>
         </inertial>
     </link>
     <gazebo reference="wheel1">
         <material>Gazebo/DarkGrey</material>
         <selfCollide>false</selfCollide>
-        <mu1 value="0.5" />
-        <mu2 value="0.5" />
+        <mu1 value="0.3" />
+        <mu2 value="0.3" />
+        <slip1 value="0" />
+        <slip2 value="0" />
         <kp value="10000000.0" />
         <kd value="1" />
         <fdir1 value="1 0 0" />
+        <plugin name="gazebo_ros_control">
+            <robotNamespace>/</robotNamespace>
+        </plugin>
     </gazebo>
     <joint name="wheel_0_joint" type="continuous">
         <parent link="smartfork1" />
@@ -435,7 +468,7 @@
             <origin xyz="0 0 0" rpy="0 3.1415926 0" />
         </collision>
         <inertial>
-            <mass value="15" />
+            <mass value="${smartfork_weight}" />
             <origin xyz="0 0 0" rpy="0 0 0" />
             <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
         </inertial>
@@ -461,19 +494,29 @@
             </geometry>
         </collision>
         <inertial>
-            <mass value="15" />
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
+            <mass value="${wheel_weight}" />
+            <origin xyz="0 0.0 0" rpy="0 0 0" />
+            <inertia ixx="${(1/12) * wheel_weight * (3 * wheel_radius * wheel_radius + wheel_width * wheel_width)}" 
+                    iyy="${(1/12) * wheel_weight * (3 * wheel_radius * wheel_radius + wheel_width * wheel_width)}" 
+                    izz="${(1/2) * wheel_weight * wheel_radius * wheel_radius}" 
+                    ixy="0.0" 
+                    ixz="0.0" 
+                    iyz="0.0"/>
         </inertial>
     </link>
     <gazebo reference="wheel2">
         <material>Gazebo/DarkGrey</material>
         <selfCollide>false</selfCollide>
-        <mu1 value="0.5" />
-        <mu2 value="0.5" />
+        <mu1 value="0.3" />
+        <mu2 value="0.3" />
+        <slip1 value="0" />
+        <slip2 value="0" />
         <kp value="10000000.0" />
         <kd value="1" />
         <fdir1 value="1 0 0" />
+        <plugin name="gazebo_ros_control">
+            <robotNamespace>/</robotNamespace>
+        </plugin>
     </gazebo>
     <joint name="wheel_1_joint" type="continuous">
         <parent link="smartfork2" />
@@ -559,11 +602,12 @@
             </geometry>
             <origin rpy="1.5708 0.0 0.0" xyz="-0.5 0 0" />
         </collision>
-        <inertial>
-            <mass value="0.1" />
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
-        </inertial>
+        <!-- <inertial>
+            <mass value="3.888" />
+            <origin rpy="1.5708 0.0 0.0" xyz="0.1 0.02 0.015" />
+            <inertia ixx="0.00151304" iyy="0.00371216" izz="0.00371216" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial> -->
+
     </link>
     <link name="rig_12_right">
         <visual>
@@ -579,11 +623,11 @@
             </geometry>
             <origin rpy="1.5708 0.0 0.0" xyz="-0.5 0 0" />
         </collision>
-        <inertial>
-            <mass value="0.1" />
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
-        </inertial>
+        <!-- <inertial>
+            <mass value="3.888" />
+            <origin rpy="1.5708 0.0 0.0" xyz="0.1 0.02 0.015" />
+            <inertia ixx="0.00151304" iyy="0.00371216" izz="0.00371216" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial> -->
     </link>
     <joint name="rig12_right" type="fixed">
         <parent link="smartfork1" />
@@ -796,7 +840,7 @@
         </inertial>
     </link>
     <joint name="imu_joint" type="fixed">
-        <parent link="front_center"/>
+        <parent link="base_link"/>
         <child link="imu_link"/>
     </joint>
 
@@ -864,7 +908,7 @@
             <velocityTopicName>/navsat/vel</velocityTopicName>
             <referenceLatitude>49.9</referenceLatitude>
             <referenceLongitude>8.9</referenceLongitude>
-            <referenceHeading>90</referenceHeading>
+            <referenceHeading>0.0</referenceHeading>
             <referenceAltitude>0</referenceAltitude>
             <drift>0.0001 0.0001 0.0001</drift>
         </plugin>
@@ -875,11 +919,11 @@
   <xacro:include filename="$(find realsense2_description_gazebo)/urdf/_d435.urdf.xacro" />
 
   <xacro:sensor_d435 name="camera_left" topics_ns="camera_left" parent="front_center" publish_pointcloud="true">
-    <origin xyz="0.0 0.5 0.03" rpy="0 0 0" />
+    <origin xyz="0.13 0.5 0.0" rpy="0 0 0.15" />
   </xacro:sensor_d435>  
 
   <xacro:sensor_d435 name="camera_right" topics_ns="camera_right" parent="front_center" publish_pointcloud="true">
-    <origin xyz="0.0 -0.5 0.03" rpy="0 0 0" />
+    <origin xyz="0.13 -0.5 0.0" rpy="0 0 -0.15" />
   </xacro:sensor_d435>  
 </robot>
 
