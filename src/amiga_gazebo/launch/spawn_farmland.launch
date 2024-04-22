@@ -3,13 +3,15 @@
     <arg name="y" default="-5.0" />
     <arg name="z" default="0.45" />
     <arg name="yaw" default="0.087164" />
-    <arg name="generate_barriers" default="false" />
+    <arg name="generate_barriers" default="true" />
+    <arg name="generate_terrain" default="true" />
 
     <!-- Spawn Farmland Level -->
-    <arg name="sdf_farmland" default="$(find amiga_gazebo)/models/farmland_1/farmland_1.sdf"/>
-    <arg name="farmland_model_name" default="FramLand"/>
-    <node name="$(arg farmland_model_name)_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_farmland) -sdf -x $(arg x) -y $(arg y) -z $(arg z) -R 0 -P 0 -Y $(arg yaw) -model $(arg farmland_model_name)"/>
-    
+    <group if="$(arg generate_terrain)">
+        <arg name="sdf_farmland" default="$(find amiga_gazebo)/models/farmland_1/farmland_1.sdf"/>
+        <arg name="farmland_model_name" default="FramLand"/>
+        <node name="$(arg farmland_model_name)_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_farmland) -sdf -x $(arg x) -y $(arg y) -z $(arg z) -R 0 -P 0 -Y $(arg yaw) -model $(arg farmland_model_name)"/>
+    </group>
     
     <!-- Include the node if generate_barriers is true -->
     <group if="$(arg generate_barriers)">
@@ -75,8 +77,5 @@
         <node name="orange_barrier_27_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_orange) -sdf -x -0.944841 -y 26.9728 -z 0.85 -R 0 -P 0 -Y -1.5708 -model orange_barrier_27"/>
         <node name="white_barrier_29_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_barrier_white) -sdf -x -2.69126 -y 26.9851 -z 0.85 -R 0 -P 0 -Y -1.5708 -model white_barrier_29"/>
     </group>
-
-
-    <!-- Spawn Plants -->
 
 </launch>

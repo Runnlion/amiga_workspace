@@ -3,18 +3,9 @@
   <arg name="gui" default="true" />
   <arg name="headless" default="false" />
   <arg name="paused" default="true" />
-  <!-- <arg name="world_name" default="/opt/ros/noetic/share/jackal_gazebo/worlds/jackal_race.world" /> -->
-
-  <!-- Short-term hack to support the original front_laser:=true argument for spawning
-       the simulator. This will be removed in favour of using the config:=x arg instead. -->
-  <!-- <arg name="front_laser" default="false" /> -->
-  <!-- <arg name="default_config" value="front_laser" if="$(arg front_laser)" /> -->
-  <!-- <arg name="default_config" value="base" unless="$(arg front_laser)" /> -->
-  <!-- end of hack -->
-
-  <!-- Configuration of Jackal which you would like to simulate.
-       See jackal_description for details. -->
-  <!-- <arg name="config" default="$(arg default_config)" /> -->
+  <arg name="generate_barriers" default="false" />
+  <arg name="generate_tomatoes" default="false" />
+  <arg name="generate_terrain" default="false" />
 
   <!-- Optionally enable teleop for the simulation -->
   <arg name="joystick" default="false" />
@@ -43,16 +34,18 @@
     <arg name="y" value="-5.0" />
     <arg name="z" value="0.25" />
     <arg name="yaw" value="0.087164" />
-    <arg name="generate_barriers" value="true" />
+    <arg name="generate_barriers" value="$(arg generate_barriers)" />
+    <arg name="generate_terrain" value="$(arg generate_terrain)" />
   </include>
 
-  <node name="tomato_generating_node" pkg="amiga_gazebo" type="generate_tomato_and_spawn.py" output="screen">
-      <param name="row_number" value="8"/>
-      <param name="plant_num_per_row" value="10"/>
-      <param name="plant_yaw_seed" value="20"/>
-      <param name="terrain_z_offset" value="0.25"/>
-  </node>
-
+  <group if="$(arg generate_tomatoes)">
+    <node name="tomato_generating_node" pkg="amiga_gazebo" type="generate_tomato_and_spawn.py" output="screen">
+        <param name="row_number" value="8"/>
+        <param name="plant_num_per_row" value="2"/>
+        <param name="plant_yaw_seed" value="20"/>
+        <param name="terrain_z_offset" value="0.2"/>
+    </node>
+  </group>
   <!-- Launch twist server (Controlling in RViz) -->
   <node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server">
     <param name="link_name" value="base_link" />

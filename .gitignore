@@ -5,3 +5,5 @@
 token
 bag/**
 /results/** 
+src/amiga_gazebo/models/**
+

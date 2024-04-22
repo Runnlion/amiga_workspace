@@ -38,8 +38,8 @@ class Generate_tomato_tree:
             'row_8': {'start': [-2.250606, 22.132254, 0.987], 'end': [70.069817, 22.527531, 0.987]}
             }
             # Retrieve parameters
-        self.row_num:int = rospy.get_param("~row_number", 8)
-        self.plant_num:int = rospy.get_param("~plant_num_per_row", 20)
+        self.row_num:int = rospy.get_param("~row_number", 2)
+        self.plant_num:int = rospy.get_param("~plant_num_per_row", 10)
         self.seed_val:int = rospy.get_param("~plant_yaw_seed", 0)
         self.terrain_level:float = rospy.get_param("~terrain_z_offset", 0)
         rospy.loginfo(self.terrain_level)
@@ -51,6 +51,8 @@ class Generate_tomato_tree:
 
         random.seed(self.seed_val)
 
+        self.test_plant_uri = "model://plant/meshes/plant.obj"
+        self.tomato_plant_uri = "model://plant_tomato/meshes/plant_tomato.obj"
         self.model_name = 'auto_generated_plant_rows'
         self.sdf_name = 'plant_rows'
         self.Amiga_Gazebo_Path = rospkg.RosPack().get_path('amiga_gazebo')
@@ -198,9 +200,10 @@ class Generate_tomato_tree:
         geometry = ET.SubElement(collision, "geometry")
         mesh = ET.SubElement(geometry, "mesh")
         scale = ET.SubElement(mesh, "scale")
-        scale.text = "0.0015 0.0015 0.0015"
+        # scale.text = "0.0015 0.0015 0.0015"
+        scale.text = "0.1 0.1 0.1"
         uri = ET.SubElement(mesh, "uri")
-        uri.text = "model://plant/meshes/plant.obj"
+        uri.text = self.tomato_plant_uri
         
         # Add visual properties
         visual = ET.SubElement(link, "visual")
@@ -210,17 +213,19 @@ class Generate_tomato_tree:
         geometry = ET.SubElement(visual, "geometry")
         mesh = ET.SubElement(geometry, "mesh")
         scale = ET.SubElement(mesh, "scale")
-        scale.text = "0.0015 0.0015 0.0015"
+        scale.text =  "0.1 0.1 0.1"
         uri = ET.SubElement(mesh, "uri")
-        uri.text = "model://plant/meshes/plant.obj"
-        material = ET.SubElement(visual, "material")
-        script = ET.SubElement(material, "script")
-        uri = ET.SubElement(script, "uri")
-        uri.text = "model://plant/materials/scripts"
-        uri = ET.SubElement(script, "uri")
-        uri.text = "model://plant/materials/textures"
-        name = ET.SubElement(script, "name")
-        name.text = "plant/Diffuse"
+        uri.text = self.tomato_plant_uri
+
+        if(uri.text == self.test_plant_uri):
+            material = ET.SubElement(visual, "material")
+            script = ET.SubElement(material, "script")
+            uri = ET.SubElement(script, "uri")
+            uri.text = "model://plant/materials/scripts"
+            uri = ET.SubElement(script, "uri")
+            uri.text = "model://plant/materials/textures"
+            name = ET.SubElement(script, "name")
+            name.text = "plant/Diffuse"
 
     def spawn(self):
         import subprocess
