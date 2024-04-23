@@ -4,3 +4,6 @@
 [submodule "src/realsense2_description_gazebo"]
 	path = src/realsense2_description_gazebo
 	url = https://github.com/Runnlion/realsense2_description_gazebo.git
+[submodule "src/rtabmap_ros"]
+	path = src/rtabmap_ros
+	url = https://github.com/introlab/rtabmap_ros.git
