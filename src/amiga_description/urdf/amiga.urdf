@@ -53,13 +53,13 @@
             <origin xyz="0 0.395 0" rpy="0 0 0" />
             <material name="dark_grey"/>
             <geometry>
-                <mesh filename="package://amiga_ros/amiga_description/smartfork_tire.stl" scale="0.001 0.001 0.001" />
+                <mesh filename="package://amiga_description/meshes/smartfork_tire.stl" scale="0.001 0.001 0.001" />
             </geometry>
         </visual>
         <collision>
             <origin xyz="0 0.395 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://amiga_ros/amiga_description/smartfork_tire.stl" scale="0.001 0.001 0.001" />
+                <mesh filename="package://amiga_description/meshes/smartfork_tire.stl" scale="0.001 0.001 0.001" />
             </geometry>
         </collision>
         <inertial>
@@ -91,12 +91,12 @@
         <visual>
             <material name="white"/>
             <geometry>
-                <mesh filename="package://amiga_ros/amiga_description/smartfork.stl" scale="0.001 0.001 0.001" />
+                <mesh filename="package://amiga_description/meshes/smartfork.stl" scale="0.001 0.001 0.001" />
             </geometry>
         </visual>
         <collision>
             <geometry>
-                <mesh filename="package://amiga_ros/amiga_description/smartfork.stl" scale="0.001 0.001 0.001" />
+                <mesh filename="package://amiga_description/meshes/smartfork.stl" scale="0.001 0.001 0.001" />
             </geometry>
         </collision>
         <inertial>
@@ -166,13 +166,13 @@
             <origin xyz="0 0.395 0" rpy="0 0 0" />
             <material name="dark_grey"/>
             <geometry>
-                <mesh filename="package://amiga_ros/amiga_description/smartfork_tire.stl" scale="0.001 0.001 0.001" />
+                <mesh filename="package://amiga_description/meshes/smartfork_tire.stl" scale="0.001 0.001 0.001" />
             </geometry>
         </visual>
         <collision>
             <origin xyz="0 0.395 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://amiga_ros/amiga_description/smartfork_tire.stl" scale="0.001 0.001 0.001" />
+                <mesh filename="package://amiga_description/meshes/smartfork_tire.stl" scale="0.001 0.001 0.001" />
             </geometry>
         </collision>
         <inertial>
@@ -204,12 +204,12 @@
         <visual>
             <material name="white"/>
             <geometry>
-                <mesh filename="package://amiga_ros/amiga_description/smartfork.stl" scale="0.001 0.001 0.001" />
+                <mesh filename="package://amiga_description/meshes/smartfork.stl" scale="0.001 0.001 0.001" />
             </geometry>
         </visual>
         <collision>
             <geometry>
-                <mesh filename="package://amiga_ros/amiga_description/smartfork.stl" scale="0.001 0.001 0.001" />
+                <mesh filename="package://amiga_description/meshes/smartfork.stl" scale="0.001 0.001 0.001" />
             </geometry>
         </collision>
         <inertial>
@@ -232,13 +232,13 @@
     <link name="link3_connector">
         <visual>
             <geometry>
-                <mesh filename="package://amiga_ros/amiga_description/connector.stl" />
+                <mesh filename="package://amiga_description/meshes/connector.stl" />
             </geometry>
             <origin rpy="0 0 0" xyz="0 0 -0.01" />
         </visual>
         <collision>
             <geometry>
-                <mesh filename="package://amiga_ros/amiga_description/connector.stl" />
+                <mesh filename="package://amiga_description/meshes/connector.stl" />
             </geometry>
             <origin rpy="0 0 0" xyz="0 0 -0.01" />
         </collision>
@@ -281,13 +281,13 @@
     <link name="link4_connector">
         <visual>
             <geometry>
-                <mesh filename="package://amiga_ros/amiga_description/connector.stl" />
+                <mesh filename="package://amiga_description/meshes/connector.stl" />
             </geometry>
             <origin rpy="0 0 0" xyz="0 0 -0.01" />
         </visual>
         <collision>
             <geometry>
-                <mesh filename="package://amiga_ros/amiga_description/connector.stl" />
+                <mesh filename="package://amiga_description/meshes/connector.stl" />
             </geometry>
             <origin rpy="0 0 0" xyz="0 0 -0.01" />
         </collision>
@@ -331,13 +331,13 @@
         <visual>
             <material name="white"/>
             <geometry>
-                <mesh filename="package://amiga_ros/amiga_description/smartfork.stl" scale="0.001 0.001 0.001" />
+                <mesh filename="package://amiga_description/meshes/smartfork.stl" scale="0.001 0.001 0.001" />
             </geometry>
             <origin xyz="0 0 0" rpy="0 3.1415926 0" />
         </visual>
         <collision>
             <geometry>
-                <mesh filename="package://amiga_ros/amiga_description/smartfork.stl" scale="0.001 0.001 0.001" />
+                <mesh filename="package://amiga_description/meshes/smartfork.stl" scale="0.001 0.001 0.001" />
             </geometry>
             <origin xyz="0 0 0" rpy="0 3.1415926 0" />
         </collision>
@@ -358,13 +358,13 @@
             <origin xyz="0 0.395 0" rpy="0 0 0" />
             <material name="dark_grey"/>
             <geometry>
-                <mesh filename="package://amiga_ros/amiga_description/smartfork_tire.stl" scale="0.001 0.001 0.001" />
+                <mesh filename="package://amiga_description/meshes/smartfork_tire.stl" scale="0.001 0.001 0.001" />
             </geometry>
         </visual>
         <collision>
             <origin xyz="0 0.395 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://amiga_ros/amiga_description/smartfork_tire.stl" scale="0.001 0.001 0.001" />
+                <mesh filename="package://amiga_description/meshes/smartfork_tire.stl" scale="0.001 0.001 0.001" />
             </geometry>
         </collision>
         <inertial>
@@ -402,13 +402,13 @@
         <visual>
         <material name="white"/>
             <geometry>
-                <mesh filename="package://amiga_ros/amiga_description/smartfork.stl" scale="0.001 0.001 0.001" />
+                <mesh filename="package://amiga_description/meshes/smartfork.stl" scale="0.001 0.001 0.001" />
             </geometry>
             <origin xyz="0 0 0" rpy="0 3.1415926 0" />
         </visual>
         <collision>
             <geometry>
-                <mesh filename="package://amiga_ros/amiga_description/smartfork.stl" scale="0.001 0.001 0.001" />
+                <mesh filename="package://amiga_description/meshes/smartfork.stl" scale="0.001 0.001 0.001" />
             </geometry>
             <origin xyz="0 0 0" rpy="0 3.1415926 0" />
         </collision>
@@ -429,13 +429,13 @@
             <origin xyz="0 0.395 0" rpy="0 0 0" />
             <material name="dark_grey"/>
             <geometry>
-                <mesh filename="package://amiga_ros/amiga_description/smartfork_tire.stl" scale="0.001 0.001 0.001" />
+                <mesh filename="package://amiga_description/meshes/smartfork_tire.stl" scale="0.001 0.001 0.001" />
             </geometry>
         </visual>
         <collision>
             <origin xyz="0 0.395 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://amiga_ros/amiga_description/smartfork_tire.stl" scale="0.001 0.001 0.001" />
+                <mesh filename="package://amiga_description/meshes/smartfork_tire.stl" scale="0.001 0.001 0.001" />
             </geometry>
         </collision>
         <inertial>
@@ -472,13 +472,13 @@
     <link name="link1_connector">
         <visual>
             <geometry>
-                <mesh filename="package://amiga_ros/amiga_description/connector.stl" />
+                <mesh filename="package://amiga_description/meshes/connector.stl" />
             </geometry>
             <origin rpy="0 0 0" xyz="0 0 -0.01" />
         </visual>
         <collision>
             <geometry>
-                <mesh filename="package://amiga_ros/amiga_description/connector.stl" />
+                <mesh filename="package://amiga_description/meshes/connector.stl" />
             </geometry>
             <origin rpy="0 0 0" xyz="0 0 -0.01" />
         </collision>
@@ -496,13 +496,13 @@
     <link name="link2_connector">
         <visual>
             <geometry>
-                <mesh filename="package://amiga_ros/amiga_description/connector.stl" />
+                <mesh filename="package://amiga_description/meshes/connector.stl" />
             </geometry>
             <origin rpy="0 0 0" xyz="0 0 -0.01" />
         </visual>
         <collision>
             <geometry>
-                <mesh filename="package://amiga_ros/amiga_description/connector.stl" />
+                <mesh filename="package://amiga_description/meshes/connector.stl" />
             </geometry>
             <origin rpy="0 0 0" xyz="0 0 -0.01" />
         </collision>
