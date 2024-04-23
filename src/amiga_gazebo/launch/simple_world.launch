@@ -1,0 +1,46 @@
+<launch>
+  <arg name="use_sim_time" default="true" />
+  <arg name="gui" default="true" />
+  <arg name="headless" default="false" />
+  <arg name="paused" default="true" />
+  <arg name="generate_barriers" default="false" />
+  <arg name="generate_tomatoes" default="true" />
+  <arg name="generate_terrain" default="true" />
+  <!-- <arg name="world_name" default="$(find amiga_gazebo)/worlds/simple_world.world" /> -->
+
+  <!-- Optionally enable teleop for the simulation -->
+  <arg name="joystick" default="false" />
+  <!-- Launch Gazebo with the specified world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="debug" value="0" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="use_sim_time" value="$(arg use_sim_time)" />
+    <arg name="headless" value="$(arg headless)" />
+    <arg name="paused" value="$(arg paused)" />
+    <!-- <arg name="world_name" value="$(arg world_name)" /> -->
+  </include>
+
+  <!-- Spawn Amiga (UGV) -->
+  <include file="$(find amiga_gazebo)/launch/spawn_amiga.launch">
+    <arg name="x" value="0" />
+    <arg name="y" value="0" />
+    <arg name="z" value="0.3" />
+    <arg name="yaw" value="0" />
+    <arg name="joystick" value="$(arg joystick)" />
+  </include>
+
+  <group if="$(arg generate_tomatoes)">
+    <node name="tomato_generating_node" pkg="amiga_gazebo" type="generate_tomato_and_spawn.py" output="screen">
+        <param name="row_number" value="2"/>
+        <param name="plant_num_per_row" value="20"/>
+        <param name="plant_yaw_seed" value="20"/>
+        <param name="terrain_z_offset" value="0.0"/>
+        <param name="simple_world" value="true"/>
+    </node>
+  </group>
+
+  <!-- Launch twist server (Controlling in RViz) -->
+  <node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server">
+    <param name="link_name" value="base_link" />
+  </node>
+</launch>
