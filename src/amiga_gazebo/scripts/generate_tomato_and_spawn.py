@@ -37,11 +37,20 @@ class Generate_tomato_tree:
             'row_7': {'start': [-1.499264, 19.287249, 0.987], 'end': [70.069817, 19.924019, 0.987]},
             'row_8': {'start': [-2.250606, 22.132254, 0.987], 'end': [70.069817, 22.527531, 0.987]}
             }
-            # Retrieve parameters
+        self.coord_data_simple = {
+            'row_1': {'start': [2.0,3.0, 0.0], 'end': [12.0, 3.0, 0.0]},
+            'row_2': {'start': [2.0,-3.0, 0.0], 'end': [12.0, -3.0, 0.0]}}
+        # Retrieve parameters
         self.row_num:int = rospy.get_param("~row_number", 2)
         self.plant_num:int = rospy.get_param("~plant_num_per_row", 10)
         self.seed_val:int = rospy.get_param("~plant_yaw_seed", 0)
         self.terrain_level:float = rospy.get_param("~terrain_z_offset", 0)
+        self.simple_world:bool = rospy.get_param("~simple_world", False)
+
+        if(self.simple_world):
+            rospy.loginfo("Select Simple world.")
+            self.coord_data = self.coord_data_simple
+        
         rospy.loginfo(self.terrain_level)
         # self.plant_num = 20 #default plant number per row
         # self.row_num = 8
@@ -142,7 +151,10 @@ class Generate_tomato_tree:
                 yaw = random.uniform(-1.57, 1.57)
                 x = start_pt[0] + dx*(plant_id-1)
                 y = start_pt[1] + dy*(plant_id-1)
-                z = self.find_z_value(x,y)
+                if(not self.simple_world):
+                    z = self.find_z_value(x,y)
+                else:
+                    z = 0
                 rospy.loginfo(f"Estimated Height Plant_{row_num}_{plant_id} = {z}")
                 self.add_plant_instance(f"plant_{row_num}_{plant_id}", 
                                         f"{x} {y} {z} 1.57 0 {yaw}")
