@@ -4,3 +4,6 @@
 [submodule "src/realsense2_description_gazebo"]
 	path = src/realsense2_description_gazebo
 	url = https://github.com/Runnlion/realsense2_description_gazebo.git
+[submodule "src/orb_slam3_ros"]
+	path = src/orb_slam3_ros
+	url = https://github.com/thien94/orb_slam3_ros.git
