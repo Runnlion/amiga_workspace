@@ -21,9 +21,9 @@ class PositionGroundTruthGenerator:
         pose = PoseStamped()
         pose.header = msg.header
         pose.header.frame_id = "world"
-        pose.pose.position.x = msg.pose.position.x * 0.058
-        pose.pose.position.y = msg.pose.position.y * 0.058
-        pose.pose.position.z = msg.pose.position.z * 0.058
+        pose.pose.position.x = msg.pose.position.x
+        pose.pose.position.y = msg.pose.position.y
+        pose.pose.position.z = msg.pose.position.z
         self.path_msg.poses.append(pose)
         
 

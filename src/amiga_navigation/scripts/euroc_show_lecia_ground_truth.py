@@ -23,18 +23,18 @@ class PositionGroundTruthGenerator:
         pose.header = msg.header
 
         # deal with offset data
-        # pose.pose.position.x = point.x - self.init_x
-        # pose.pose.position.y = point.y - self.init_y
-        # pose.pose.position.z = point.z - self.init_z
+        pose.pose.position.x = point.x - self.init_x
+        pose.pose.position.y = point.y - self.init_y
+        pose.pose.position.z = point.z - self.init_z
         
         # rotate along z axis by -90 degrees
         # pose.pose.position.x = pose.pose.position.y
         # pose.pose.position.y = -pose.pose.position.x
         # pose.pose.position.z = pose.pose.position.z
 
-        pose.pose.position.x = point.y - self.init_y
-        pose.pose.position.y = -(point.x - self.init_x)
-        pose.pose.position.z = point.z - self.init_z
+        # pose.pose.position.x = point.y - self.init_y
+        # pose.pose.position.y = -(point.x - self.init_x)
+        # pose.pose.position.z = point.z - self.init_z
 
         self.path_msg.poses.append(pose)
 
