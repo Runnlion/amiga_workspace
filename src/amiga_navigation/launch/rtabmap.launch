@@ -22,12 +22,13 @@
   <arg name="subscribe_rgb"  default="$(arg depth)"/>
 
   <!-- Choose visualization -->
-  <arg name="rtabmap_viz"             default="true" />
+  <arg name="rtabmap_viz"             default="false" />
   <arg name="rviz"                    default="false" />
 
   <!-- Localization-only mode -->
   <arg name="localization"            default="false"/>
   <arg name="initial_pose"            default=""/>             <!-- Format: "x y z roll pitch yaw" or "x y z qx qy qz qw". Default: see "RGBD/StartAtOrigin" doc -->
+  <arg name="loc_thr"                 default="0.0"/>          <!-- In localization mode, setting this threshold will make rtabmap publishing diagnostics about if the robot is localized (under that error threshold). -->
 
   <!-- sim time for convenience, if playing a rosbag -->
   <arg name="use_sim_time"            default="false"/>
@@ -48,7 +49,7 @@
   <arg name="database_path"           default="~/.ros/rtabmap.db"/>
   <arg name="queue_size"              default="10"/>
   <arg name="wait_for_transform"      default="0.2"/>
-  <arg name="args"                    default=""/>              <!-- delete_db_on_start, udebug -->
+  <arg name="args"                    default="delete_db_on_start"/>              <!-- delete_db_on_start, udebug -->
   <arg name="rtabmap_args"            default="$(arg args)"/>   <!-- deprecated, use "args" argument -->
   <arg name="gdb"                     default="false"/>         <!-- Launch nodes in gdb for debugging (apt install xterm gdb) -->
   <arg     if="$(arg gdb)" name="launch_prefix" default="xterm -e gdb -q -ex run --args"/>
@@ -63,9 +64,9 @@
   <arg name="approx_sync_max_interval"  default="0"/> <!-- (sec) 0 means infinite interval duration (used with approx_sync=true) -->
 
   <!-- RGB-D related topics -->
-  <arg name="rgb_topic"               default="/camera/rgb/image_rect_color" />
-  <arg name="depth_topic"             default="/camera/depth_registered/image_raw" />
-  <arg name="camera_info_topic"       default="/camera/rgb/camera_info" />
+  <arg name="rgb_topic"               default="/camera/color/image_raw" />
+  <arg name="depth_topic"             default="/camera/depth/image_raw" />
+  <arg name="camera_info_topic"       default="/camera/color/camera_info" />
   <arg name="depth_camera_info_topic" default="$(arg camera_info_topic)" />
 
   <!-- stereo related topics -->
@@ -366,6 +367,7 @@
       <param name="publish_tf"           type="bool"   value="$(arg publish_tf_map)"/>
       <param name="initial_pose"         type="string" value="$(arg initial_pose)"/>
       <param name="gen_scan"             type="bool"   value="$(arg gen_scan)"/>
+      <param name="loc_thr"              type="double" value="$(arg loc_thr)"/>
       <param name="ground_truth_frame_id"       type="string" value="$(arg ground_truth_frame_id)"/>
       <param name="ground_truth_base_frame_id"  type="string" value="$(arg ground_truth_base_frame_id)"/>
       <param name="odom_tf_angular_variance" type="double" value="$(arg odom_tf_angular_variance)"/>
@@ -458,6 +460,7 @@
 
   <!-- Visualization RVIZ -->
   <node if="$(arg rviz)" pkg="rviz" type="rviz" name="rviz" args="-d $(arg rviz_cfg)"/>
+
   <node if="$(arg rviz)" pkg="nodelet" type="nodelet" name="points_xyzrgb" args="standalone rtabmap_util/point_cloud_xyzrgb" clear_params="$(arg clear_params)" output="$(arg output)">
     <remap if="$(arg stereo)" from="left/image"        to="$(arg left_image_topic_relay)"/>
     <remap if="$(arg stereo)" from="right/image"       to="$(arg right_image_topic_relay)"/>

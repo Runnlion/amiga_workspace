@@ -1,0 +1,12 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/mnt/Data/amiga_workspace/devel/lib/python3/dist-packages",
+        "/mnt/Data/melon_robot/devel/lib/python3/dist-packages",
+        "/opt/ros/noetic/lib/python3/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/mnt/Data/amiga_workspace/devel/lib/python3/dist-packages",
+        "/mnt/Data/melon_robot/devel/lib/python3/dist-packages",
+        "/opt/ros/noetic/lib/python3/dist-packages"
+    ]
+}

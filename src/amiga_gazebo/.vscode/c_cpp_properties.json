@@ -1,0 +1,33 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/mnt/Data/amiga_workspace/devel/include/**",
+        "/mnt/Data/melon_robot/devel/include/**",
+        "/opt/ros/noetic/include/**",
+        "/mnt/Data/amiga_workspace/src/realsense_gazebo_plugin/include/**",
+        "/mnt/Data/amiga_workspace/src/rtabmap_ros/rtabmap_conversions/include/**",
+        "/mnt/Data/amiga_workspace/src/rtabmap_ros/rtabmap_costmap_plugins/include/**",
+        "/mnt/Data/amiga_workspace/src/rtabmap_ros/rtabmap_odom/include/**",
+        "/mnt/Data/amiga_workspace/src/rtabmap_ros/rtabmap_rviz_plugins/include/**",
+        "/mnt/Data/amiga_workspace/src/rtabmap_ros/rtabmap_slam/include/**",
+        "/mnt/Data/amiga_workspace/src/rtabmap_ros/rtabmap_sync/include/**",
+        "/mnt/Data/amiga_workspace/src/rtabmap_ros/rtabmap_util/include/**",
+        "/mnt/Data/amiga_workspace/src/rtabmap_ros/rtabmap_viz/include/**",
+        "/mnt/Data/melon_robot/src/tmr_ros1/tm_driver/include/**",
+        "/mnt/Data/melon_robot/src/turtlebot_apps/turtlebot_actions/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

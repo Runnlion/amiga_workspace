@@ -707,8 +707,10 @@
         </geometry>
       </visual>
       <collision>
+      <!-- Add the Collision Info  -->
+        <origin xyz="0 0 -0.0377" />
         <geometry>
-          <sphere radius="0"/>
+          <mesh filename="package://velodyne_description/meshes/VLP16_scan.dae" />
         </geometry>
       </collision>
     </link>
@@ -720,43 +722,43 @@
     <gazebo reference="velodyne">
         <turnGravityOff>true</turnGravityOff>
         <sensor name="velodyne" type="ray">
-        <pose>0 0 0 0 0 0</pose>
-        <visualize>false</visualize>
-        <update_rate>10</update_rate>
-        <ray>
-            <scan>
-                <horizontal>
-                    <samples>1875</samples>
-                    <resolution>1</resolution>
-                    <min_angle>-3.14159</min_angle>
-                    <max_angle>3.14159</max_angle>
-                </horizontal>
-                <vertical>
-                    <samples>16</samples>
-                    <resolution>1</resolution>
-                    <min_angle>-0.26179938333</min_angle>
-                    <max_angle>0.26179938333</max_angle>
-                </vertical>
-            </scan>
-            <range>
-                <min>0.3</min>
-                <max>131</max>
-                <resolution>0.001</resolution>
-            </range>
-            <noise>
-              <type>gaussian</type>
-              <mean>0.0</mean>
-              <stddev>0.0</stddev>
-            </noise>
-        </ray>
-          <plugin name="gazebo_ros_laser_controller" filename="libgazebo_ros_velodyne_laser.so">
-            <topicName>/velodyne_points</topicName>
-            <frameName>velodyne</frameName>
-            <organize_cloud>false</organize_cloud>
-            <min_range>0.9</min_range>
-            <max_range>130.0</max_range>
-            <gaussianNoise>0.008</gaussianNoise>
-          </plugin>
+            <pose>0 0 0 0 0 0</pose>
+            <visualize>false</visualize>
+            <update_rate>10</update_rate>
+            <ray>
+                <scan>
+                    <horizontal>
+                        <samples>1875</samples>
+                        <resolution>1</resolution>
+                        <min_angle>-3.14159</min_angle>
+                        <max_angle>3.14159</max_angle>
+                    </horizontal>
+                    <vertical>
+                        <samples>16</samples>
+                        <resolution>1</resolution>
+                        <min_angle>-0.26179938333</min_angle>
+                        <max_angle>0.26179938333</max_angle>
+                    </vertical>
+                </scan>
+                <range>
+                    <min>0.3</min>
+                    <max>131</max>
+                    <resolution>0.001</resolution>
+                </range>
+                <noise>
+                <type>gaussian</type>
+                <mean>0.0</mean>
+                <stddev>0.0</stddev>
+                </noise>
+            </ray>
+            <plugin name="gazebo_ros_laser_controller" filename="libgazebo_ros_velodyne_laser.so">
+                <topicName>/velodyne_points</topicName>
+                <frameName>velodyne</frameName>
+                <organize_cloud>false</organize_cloud>
+                <min_range>0.9</min_range>
+                <max_range>130.0</max_range>
+                <gaussianNoise>0.008</gaussianNoise>
+            </plugin>
         </sensor>
     </gazebo>
 
@@ -843,16 +845,30 @@
         </plugin>
     </gazebo>
 
+    <!-- Add the Ground Truth Plugin for Voledyne Frame -->
+    <plugin name="camera_pose_publisher" filename="libgazebo_ros_p3d.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>30.0</updateRate>
+        <bodyName>velodyne</bodyName>
+        <topicName>ground_truth/velodyne_pose</topicName>
+        <frameName>world</frameName> <!--Correct?  -->
+    </plugin>
+
 
     <!-- Add the Left Depth Camera -->
   <xacro:include filename="$(find realsense2_description_gazebo)/urdf/_d435.urdf.xacro" />
 
-  <xacro:sensor_d435 name="camera_left" topics_ns="camera_left" parent="front_center" publish_pointcloud="true">
+  <!-- <xacro:sensor_d435 name="camera_left" topics_ns="camera_left" parent="front_center" publish_pointcloud="true">
     <origin xyz="0.13 0.5 0.0" rpy="0 0 0.15" />
+  </xacro:sensor_d435>   -->
+
+  <!-- <xacro:sensor_d435 name="camera_right" topics_ns="camera_right" parent="front_center" publish_pointcloud="true">
+    <origin xyz="0.13 -0.5 0.0" rpy="0 0 -0.15" />
+  </xacro:sensor_d435>   -->
+
+  <xacro:sensor_d435 name="camera" topics_ns="camera" parent="front_center" publish_pointcloud="true">
+    <origin xyz="0.0 0.0 0.25" rpy="0 0 0" />
   </xacro:sensor_d435>  
 
-  <xacro:sensor_d435 name="camera_right" topics_ns="camera_right" parent="front_center" publish_pointcloud="true">
-    <origin xyz="0.13 -0.5 0.0" rpy="0 0 -0.15" />
-  </xacro:sensor_d435>  
 </robot>
 

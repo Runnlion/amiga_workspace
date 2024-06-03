@@ -40,3 +40,21 @@ echo 'source /mnt/Data/amiga_workspace/devel/setup.bash' >> ~/.bashrc
 
 - [ ] Rotation Cetner of the Amiga
 
+## Features
+
+### RTAB-Map Development
+
+How to deploy the rtabmap under ROS environment
+
+```bash
+cd ~/amiga_workspace/src
+git submodule add https://github.com/introlab/rtabmap_ros.git rtabmap_ros
+cd ..
+catkim_make -j4
+```
+
+* Test the RTAB-MAP (Ref:[Website](http://wiki.ros.org/rtabmap_ros))
+```bash
+roslaunch rtabmap_demos demo_robot_mapping.launch
+rosbag play --clock path/to/demo_mapping.bag
+```
