@@ -158,6 +158,7 @@ include_directories(
 catkin_install_python(PROGRAMS
   scripts/euroc_show_lecia_ground_truth.py
   scripts/ntuviral_publish_ground_truth.py
+  scripts/kitti_gps_ground_truth.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

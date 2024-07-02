@@ -4,13 +4,15 @@ import numpy as np
 from PyQt5.QtCore import pyqtSlot
 from nav_msgs.msg import Path
 from geometry_msgs.msg import PoseStamped, Point
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QFileDialog
+from PyQt5.QtCore import QSettings
 from scipy.interpolate import interp1d
 import open3d as o3d
 from scipy.spatial.transform import Rotation as R
 from scipy.linalg import orthogonal_procrustes
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
+import csv
 
 class MainWindow(QWidget):
     def __init__(self):
@@ -32,15 +34,19 @@ class MainWindow(QWidget):
         self.alignButton.clicked.connect(self.alignCallback)
         layout.addWidget(self.alignButton)
 
-        self.rmseButton = QPushButton('Calculate RMSE')
-        self.rmseButton.clicked.connect(self.rmseCallback)
+        self.rmseButton = QPushButton('Load_LiDAR_CSV')
+        self.rmseButton.clicked.connect(self.lidar_pose_callback)
         layout.addWidget(self.rmseButton)
+
 
         self.setLayout(layout)
 
         self.listening = False
         self.ground_truth_path = Path()
         self.slam_path = Path()
+        self.settings = QSettings("YourCompany", "YourApp")
+        self.last_directory = self.settings.value("LastDirectory", "/mnt/Data/SLAM_Dataset/")
+        self.load_lidar = False
 
     @pyqtSlot()
     def listenCallback(self):
@@ -50,12 +56,15 @@ class MainWindow(QWidget):
             self.ground_truth_path = Path()
             self.slam_path = Path()
             self.gth_subscriber = rospy.Subscriber('/position_ground_truth', Path, self.gtCallback)
-            self.slam_result_subscriber = rospy.Subscriber('/orb_slam3_ros/trajectory', Path, self.slamCallback)
+            self.slam_result_subscriber = None
+            if(self.load_lidar == False):
+                self.slam_result_subscriber = rospy.Subscriber('/orb_slam3_ros/trajectory', Path, self.slamCallback)
         else:
             self.listenButton.setText('Start Listen')
             self.listening = False
             self.gth_subscriber.unregister()
-            self.slam_result_subscriber.unregister()
+            if(self.load_lidar == False):
+                self.slam_result_subscriber.unregister()
 
     def gtCallback(self, msg):
         self.ground_truth_path = msg
@@ -70,11 +79,17 @@ class MainWindow(QWidget):
         # Implement ICP alignment here
         # For demonstration purposes, just print a message
         # Extract trajectories
-        estimated_trajectory = self.extract_trajectory(self.slam_path)
+        if(self.load_lidar == False):
+            estimated_trajectory = self.extract_trajectory(self.slam_path)
+            estimated_timestamps = np.array([pose.header.stamp.to_sec() for pose in self.slam_path.poses])
+
+        else:
+            estimated_trajectory = self.original_lidar_data[:,1:4]
+            estimated_timestamps = self.original_lidar_data[:,0]
+
         ground_truth_trajectory = self.extract_trajectory(self.ground_truth_path)
 
         # Extract timestamps
-        estimated_timestamps = np.array([pose.header.stamp.to_sec() for pose in self.slam_path.poses])
         ground_truth_timestamps = np.array([pose.header.stamp.to_sec() for pose in self.ground_truth_path.poses])
 
         #  = self.interpolate_trajectory(estimated_trajectory, estimated_timestamps, ground_truth_timestamps)
@@ -108,7 +123,6 @@ class MainWindow(QWidget):
         ax.set_zlabel('Z')
         ax.set_title(f'3D Trajectories, RMSE: {rmse}')
         ax.legend()
-        
         plt.show()
 
     def interpolate_trajectory(self, estimated_trajectory, estimated_timestamps, ground_truth_timestamps):
@@ -157,18 +171,25 @@ class MainWindow(QWidget):
         return rmse
 
     @pyqtSlot()
-    def rmseCallback(self):
-        # Calculate RMSE between the two trajectories
-        rmse = 0.0
-        for i in range(len(self.ground_truth_path.poses)):
-            gt_pose = self.ground_truth_path.poses[i]
-            slam_pose = self.slam_path.poses[i]
-            rmse += (gt_pose.pose.position.x - slam_pose.pose.position.x) ** 2
-            rmse += (gt_pose.pose.position.y - slam_pose.pose.position.y) ** 2
-            rmse += (gt_pose.pose.position.z - slam_pose.pose.position.z) ** 2
-        rmse /= len(self.ground_truth_path.poses)
-        rmse = rmse ** 0.5
-        print("RMSE:", rmse)
+    def lidar_pose_callback(self):
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        file, _ = QFileDialog.getOpenFileName(self, "Select CSV File", "", "CSV Files (*.csv)", options=options)
+        if file:
+            print("Selected file:", file)
+            self.original_lidar_data = self.read_csv(file)
+            print("CSV Data as NumPy Array:")
+            print(self.original_lidar_data)
+            self.load_lidar = True
+
+    def read_csv(self, file):
+        data = []
+        with open(file, newline='') as csvfile:
+            reader = csv.reader(csvfile)
+            for row in reader:
+                data.append([float(val) for val in row])  # Convert each value to float
+        return np.array(data)
+
 
     def extract_trajectory(self,path_msg:Path):
         trajectory = []
