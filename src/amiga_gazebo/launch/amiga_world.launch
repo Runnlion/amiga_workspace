@@ -2,10 +2,11 @@
   <arg name="use_sim_time" default="true" />
   <arg name="gui" default="true" />
   <arg name="headless" default="false" />
-  <arg name="paused" default="true" />
+  <arg name="paused" default="false" />
   <arg name="generate_barriers" default="false" />
-  <arg name="generate_tomatoes" default="true" />
-  <arg name="generate_terrain" default="true" />
+  <arg name="generate_tomatoes" default="false" />
+  <arg name="generate_terrain" default="false" />
+  <arg name="visualization" default="true" />
 
   <!-- Optionally enable teleop for the simulation -->
   <arg name="joystick" default="false" />
@@ -51,4 +52,10 @@
   <node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server">
     <param name="link_name" value="base_link" />
   </node>
+
+  <group if="$(arg visualization)">
+    <include file="$(find amiga_viz)/launch/view_amiga.launch">
+    </include>
+  </group>
+
 </launch>
