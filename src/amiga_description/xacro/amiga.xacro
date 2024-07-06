@@ -51,7 +51,7 @@
         </inertial>
     </xacro:macro>
 
-    <xacro:include filename="$(find amiga_description)/urdf/amiga.new.gazebo"/>
+    <xacro:include filename="$(find amiga_description)/urdf/amiga.gazebo"/>
 
     <!-- define the base link -->
     <link name="dummy"/>
@@ -111,9 +111,24 @@
             </collision>
             <xacro:inertia_wheel/>
         </link>
+        <gazebo reference = "wheel${prefix}_link">
+            <mu1>${mu1}</mu1>
+            <mu2>${mu1}</mu2>
+            <kp value="10000000.0" />
+            <kd value="1" />
+            <fdir1 value="1 0 0"/>
+            <material>Gazebo/Gray</material>
+        </gazebo>
+        <transmission name="${prefix}_wheel_trans">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="wheel${prefix}_joint">
+                <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            </joint>
+            <actuator name="${prefix}_actuator">
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+        </transmission>
     </xacro:macro>
-
-
     <xacro:wheel prefix="1">
         <origin xyz="0.5 0.49 0.22" rpy="1.5708 0 0" />
     </xacro:wheel>
@@ -153,7 +168,7 @@
     <joint name="navsat_joint" type="fixed">
         <parent link="body_link"/>
         <child link="navsat_link"/>
-        <origin xyz="0.5 0.0 1.0"/>
+        <origin xyz="0.5 0.0 0.6"/>
     </joint>
 
 

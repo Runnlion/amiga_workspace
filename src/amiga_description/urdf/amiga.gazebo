@@ -5,9 +5,9 @@
     <gazebo reference = "body_link">
         <mu1>${mu1}</mu1>
         <mu2>${mu1}</mu2>
-        <material>Gazebo/Red</material>
+        <!-- <material>Gazebo/Red</material> -->
     </gazebo>
-    <gazebo reference = "wheel1_link">
+    <!-- <gazebo reference = "wheel1_link">
         <mu1>${mu1}</mu1>
         <mu2>${mu1}</mu2>
         <material>Gazebo/Yellow</material>
@@ -26,6 +26,12 @@
         <mu1>${mu1}</mu1>
         <mu2>${mu1}</mu2>
         <material>Gazebo/Yellow</material>
+    </gazebo> -->
+
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace></robotNamespace>
+        </plugin>
     </gazebo>
 
     <gazebo>
@@ -36,7 +42,6 @@
             <rightFrontJoint>wheel2_joint</rightFrontJoint>
             <leftRearJoint>wheel3_joint</leftRearJoint>
             <rightRearJoint>wheel4_joint</rightRearJoint>
-            <!-- <wheelSeparation>${body_link_y_dim + wheel_link_length}</wheelSeparation> -->
             <wheelSeparation>1.0</wheelSeparation>
             <wheelDiameter>${2 * wheel_link_radius}</wheelDiameter>
 
