@@ -79,7 +79,8 @@ def main():
     rospy.init_node('velocity_plotter', anonymous=True)
 
     rospy.Subscriber("/navsat/vel", Vector3Stamped, navsat_callback)
-    rospy.Subscriber("/twist_marker_server/cmd_vel", Twist, twist_callback)
+    rospy.Subscriber("/cmd_vel", Twist, twist_callback)
+    # rospy.Subscriber("/twist_marker_server/cmd_vel", Twist, twist_callback)
     rospy.Subscriber("/imu", Imu, imu_callback)
     # rospy.Subscriber("/imu/data", Imu, imu_callback)
 
