@@ -35,7 +35,7 @@
         </inertial>
     </xacro:macro>
 
-    <xacro:include filename="$(find amiga_description)/urdf/amiga.new.gazebo"/>
+    <!-- <xacro:include filename="$(find amiga_description)/urdf/amiga.new.gazebo"/> -->
 
     <!-- define the base link -->
     <link name="dummy"/>

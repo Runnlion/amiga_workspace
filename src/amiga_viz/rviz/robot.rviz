@@ -23,7 +23,7 @@ Panels:
   - Class: rviz/Time
     Name: Time
     SyncMode: 0
-    SyncSource: VLP-16
+    SyncSource: ""
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -59,210 +59,40 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        base_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        camera_left_bottom_screw_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        camera_left_color_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        camera_left_color_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        camera_left_depth_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        camera_left_depth_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        camera_left_left_ir_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        camera_left_left_ir_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        camera_left_link:
+        body_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        camera_left_right_ir_frame:
+        dummy:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        camera_left_right_ir_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        camera_right_bottom_screw_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        camera_right_color_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        camera_right_color_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        camera_right_depth_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        camera_right_depth_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        camera_right_left_ir_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        camera_right_left_ir_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        camera_right_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        camera_right_right_ir_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        camera_right_right_ir_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        chassis_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        front_center:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        front_laser:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        front_laser_mount:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
         imu_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        link1_connector:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        link2_connector:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        link3_connector:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        link4_connector:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
         navsat_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        rig_12_left:
+        wheel1_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        rig_12_right:
+        wheel2_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        rig_13:
+        wheel3_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        rig_24:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        rig_34_left:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        rig_34_right:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        smartfork1:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        smartfork2:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        smartfork3:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        smartfork4:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        velodyne:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        wheel1:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        wheel2:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        wheel3:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        wheel4:
+        wheel4_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -280,100 +110,24 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: false
-        base_link:
+        body_link:
           Value: true
-        camera_left_bottom_screw_frame:
-          Value: false
-        camera_left_color_frame:
-          Value: false
-        camera_left_color_optical_frame:
-          Value: false
-        camera_left_depth_frame:
-          Value: false
-        camera_left_depth_optical_frame:
-          Value: false
-        camera_left_left_ir_frame:
-          Value: false
-        camera_left_left_ir_optical_frame:
-          Value: false
-        camera_left_link:
-          Value: false
-        camera_left_right_ir_frame:
-          Value: false
-        camera_left_right_ir_optical_frame:
-          Value: false
-        camera_right_bottom_screw_frame:
-          Value: false
-        camera_right_color_frame:
-          Value: false
-        camera_right_color_optical_frame:
-          Value: false
-        camera_right_depth_frame:
-          Value: false
-        camera_right_depth_optical_frame:
-          Value: false
-        camera_right_left_ir_frame:
-          Value: false
-        camera_right_left_ir_optical_frame:
-          Value: false
-        camera_right_link:
-          Value: false
-        camera_right_right_ir_frame:
-          Value: false
-        camera_right_right_ir_optical_frame:
-          Value: false
-        chassis_link:
+        dummy:
           Value: true
-        front_center:
-          Value: true
-        front_laser:
-          Value: false
-        front_laser_mount:
-          Value: false
         imu_link:
-          Value: false
-        link1_connector:
-          Value: false
-        link2_connector:
-          Value: false
-        link3_connector:
-          Value: false
-        link4_connector:
           Value: false
         navsat_link:
           Value: false
         odom:
           Value: false
-        rig_12_left:
-          Value: false
-        rig_12_right:
-          Value: false
-        rig_13:
-          Value: false
-        rig_24:
-          Value: false
-        rig_34_left:
-          Value: false
-        rig_34_right:
-          Value: false
-        smartfork1:
+        wheel1_link:
           Value: true
-        smartfork2:
-          Value: false
-        smartfork3:
+        wheel2_link:
           Value: true
-        smartfork4:
-          Value: false
-        velodyne:
-          Value: false
-        wheel1:
-          Value: false
-        wheel2:
-          Value: false
-        wheel3:
+        wheel3_link:
           Value: true
-        wheel4:
-          Value: false
+        wheel4_link:
+          Value: true
       Marker Alpha: 1
       Marker Scale: 1
       Name: TF
@@ -382,76 +136,20 @@ Visualization Manager:
       Show Names: true
       Tree:
         odom:
-          base_link:
-            chassis_link:
-              front_center:
-                camera_left_bottom_screw_frame:
-                  camera_left_link:
-                    camera_left_depth_frame:
-                      camera_left_color_frame:
-                        camera_left_color_optical_frame:
-                          {}
-                      camera_left_depth_optical_frame:
-                        {}
-                      camera_left_left_ir_frame:
-                        camera_left_left_ir_optical_frame:
-                          {}
-                      camera_left_right_ir_frame:
-                        camera_left_right_ir_optical_frame:
-                          {}
-                camera_right_bottom_screw_frame:
-                  camera_right_link:
-                    camera_right_depth_frame:
-                      camera_right_color_frame:
-                        camera_right_color_optical_frame:
-                          {}
-                      camera_right_depth_optical_frame:
-                        {}
-                      camera_right_left_ir_frame:
-                        camera_right_left_ir_optical_frame:
-                          {}
-                      camera_right_right_ir_frame:
-                        camera_right_right_ir_optical_frame:
-                          {}
-                front_laser_mount:
-                  front_laser:
-                    {}
-                navsat_link:
-                  {}
-                smartfork1:
-                  link1_connector:
-                    {}
-                  rig_12_left:
-                    {}
-                  rig_12_right:
-                    {}
-                  smartfork2:
-                    link2_connector:
-                      {}
-                    wheel2:
-                      {}
-                  wheel1:
-                    {}
-                smartfork3:
-                  link3_connector:
-                    rig_13:
-                      {}
-                  rig_34_left:
-                    {}
-                  rig_34_right:
-                    {}
-                  smartfork4:
-                    link4_connector:
-                      rig_24:
-                        {}
-                    wheel4:
-                      {}
-                  wheel3:
-                    {}
-                velodyne:
-                  {}
-            imu_link:
-              {}
+          dummy:
+            body_link:
+              imu_link:
+                {}
+              navsat_link:
+                {}
+              wheel1_link:
+                {}
+              wheel2_link:
+                {}
+              wheel3_link:
+                {}
+              wheel4_link:
+                {}
       Update Interval: 0
       Value: true
     - Class: rviz/InteractiveMarkers
@@ -623,7 +321,7 @@ Visualization Manager:
   Global Options:
     Background Color: 48; 48; 48
     Default Light: true
-    Fixed Frame: odom
+    Fixed Frame: dummy
     Frame Rate: 30
   Name: root
   Tools:
@@ -635,7 +333,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 6.784503936767578
+      Distance: 3.7679038047790527
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -643,9 +341,9 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: 0.5869247317314148
-        Y: 0.2661152184009552
-        Z: -0.09923195093870163
+        X: 0.3550882637500763
+        Y: -0.015600161626935005
+        Z: -0.2668074071407318
       Focal Shape Fixed Size: false
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
@@ -657,11 +355,11 @@ Visualization Manager:
     Saved: ~
 Window Geometry:
   Displays:
-    collapsed: true
+    collapsed: false
   Height: 1008
-  Hide Left Dock: true
+  Hide Left Dock: false
   Hide Right Dock: true
-  QMainWindow State: 000000ff00000000fd00000004000000000000015600000352fc020000000bfb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073000000003d00000352000000c900fffffffb0000000c00430061006d00650072006100000002080000018f0000000000000000fb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000002a005200650061006c00730065006e00730065005f0049006d006100670065005f0052006900670068007402000005000000025800000280000001e0fb00000028005200650061006c00730065006e00730065005f0049006d006100670065005f004c006500660074020000019d0000025800000280000001e0000000010000010f00000261fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000003d00000261000000a400fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004180000003efc0100000002fb0000000800540069006d0065010000000000000418000003bc00fffffffb0000000800540069006d00650100000000000004500000000000000000000004180000035200000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd00000004000000000000015600000352fc020000000bfb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000003d00000352000000c900fffffffb0000000c00430061006d00650072006100000002080000018f0000000000000000fb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000002a005200650061006c00730065006e00730065005f0049006d006100670065005f0052006900670068007402000005000000025800000280000001e0fb00000028005200650061006c00730065006e00730065005f0049006d006100670065005f004c006500660074020000019d0000025800000280000001e0000000010000010f00000261fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000003d00000261000000a400fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004180000003efc0100000002fb0000000800540069006d0065010000000000000418000003bc00fffffffb0000000800540069006d00650100000000000004500000000000000000000002bc0000035200000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Realsense_Image_Left:
     collapsed: false
   Realsense_Image_Right:
