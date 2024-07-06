@@ -15,6 +15,7 @@
   </include>
   
   <!-- Load controller. -->
+  <!-- Commented beacuse I used a gazebo-based controller -->
   <include file="$(find amiga_control)/launch/amiga_control.launch" />
 
   <!-- <include file="$(find jackal_control)/launch/teleop.launch">

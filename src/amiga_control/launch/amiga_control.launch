@@ -4,8 +4,11 @@
 
     <rosparam command="load" file="$(find amiga_control)/config/amiga_control.yaml" />
 
+    <!-- <node name="controller_spawner" pkg="controller_manager" type="spawner"
+        args="amiga_joint_publisher amiga_velocity_controller" /> -->
+
     <node name="controller_spawner" pkg="controller_manager" type="spawner"
-        args="amiga_joint_publisher amiga_velocity_controller" />
+        args="amiga_joint_publisher" />
 
     <node pkg="twist_mux" type="twist_mux" name="twist_mux">
         <rosparam command="load" file="$(find amiga_control)/config/twist_mux.yaml" />
