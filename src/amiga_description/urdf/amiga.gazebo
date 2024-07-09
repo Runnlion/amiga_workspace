@@ -35,6 +35,7 @@
     </gazebo>
 
     <gazebo>
+    <!-- BUG: No cmd timeout -->
         <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
             <updateRate>100</updateRate>
             <robotNamespace></robotNamespace>
@@ -45,9 +46,9 @@
             <wheelSeparation>1.0</wheelSeparation>
             <wheelDiameter>${2 * wheel_link_radius}</wheelDiameter>
 
-            <torque>1000</torque>
+            <torque>2500</torque>
 
-            <commandTopic>cmd_vel</commandTopic>
+            <commandTopic>/twist_marker_server/cmd_vel</commandTopic>
             <odometryTopic>odom</odometryTopic>
             <odometryFrame>odom</odometryFrame>
             <robotBaseFrame>dummy</robotBaseFrame>

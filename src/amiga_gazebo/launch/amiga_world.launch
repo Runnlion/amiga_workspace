@@ -50,7 +50,7 @@
   </group>
   <!-- Launch twist server (Controlling in RViz) -->
   <node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server">
-    <param name="link_name" value="base_link" />
+    <param name="link_name" value="dummy" />
   </node>
 
   <group if="$(arg visualization)">

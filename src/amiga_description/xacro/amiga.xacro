@@ -40,8 +40,8 @@
     <xacro:property name="wheel_radius" value="0.215" />
     <xacro:property name="wheel_width" value="0.14" />
 
-    <xacro:property name="mu1" value="0.1" />
-    <xacro:property name="mu2" value="0.1" />
+    <xacro:property name="mu1" value="1.0" />
+    <xacro:property name="mu2" value="1.0" />
 
     <xacro:macro name="inertia_wheel">
         <inertial>

@@ -62,10 +62,10 @@ def animate(i, timestamps_cmd, twist_linear_velocity_x, timestamps_gps, gps_spee
     ax_velocity.legend(['Twist Linear Velocity (x)', 'GPS Speed (x)'])
     ax_velocity.set_title('Linear Velocity')
 
-    ax_angular.scatter(timestamps_cmd, twist_angular_velocity ,label='Twist angu;ar Velocity (x)', color='red')
+    ax_angular.scatter(timestamps_cmd, twist_angular_velocity ,label='Angular Velocity (z)', color='red')
     ax_angular.plot(timestamp_imu,imu_angular_speed,label='IMU Speed (x)', color='blue')
     ax_angular.grid()
-    ax_angular.legend(['Twist Linear Velocity (x)', 'GPS Speed (x)'])
+    ax_angular.legend(['Twist Angular Velocity (z)', 'IMU Angular Speed (z)'])
     ax_angular.set_title('Angular Velocity')
     
     # Format plot
@@ -80,7 +80,7 @@ def main():
 
     rospy.Subscriber("/navsat/vel", Vector3Stamped, navsat_callback)
     rospy.Subscriber("/cmd_vel", Twist, twist_callback)
-    # rospy.Subscriber("/twist_marker_server/cmd_vel", Twist, twist_callback)
+    rospy.Subscriber("/twist_marker_server/cmd_vel", Twist, twist_callback)
     rospy.Subscriber("/imu", Imu, imu_callback)
     # rospy.Subscriber("/imu/data", Imu, imu_callback)
 
