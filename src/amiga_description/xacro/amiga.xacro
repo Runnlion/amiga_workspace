@@ -40,8 +40,8 @@
     <xacro:property name="wheel_radius" value="0.215" />
     <xacro:property name="wheel_width" value="0.14" />
 
-    <xacro:property name="mu1" value="1.0" />
-    <xacro:property name="mu2" value="1.0" />
+    <xacro:property name="mu1" value="1" />
+    <xacro:property name="mu2" value="0.3" />
 
     <xacro:macro name="inertia_wheel">
         <inertial>
@@ -87,7 +87,7 @@
         </inertial>
     </link>
 
-    <xacro:macro name="wheel" params="prefix *joint_pose">
+    <xacro:macro name="wheel" params="prefix *joint_pose    ">
         <joint name="wheel${prefix}_joint" type="continuous">
             <parent link="body_link"/>
             <child link="wheel${prefix}_link"/>
@@ -113,12 +113,16 @@
         </link>
         <gazebo reference = "wheel${prefix}_link">
             <mu1>${mu1}</mu1>
-            <mu2>${mu1}</mu2>
-            <kp value="10000000.0" />
+            <mu2>${mu2}</mu2>
+            <kp value="100000000.0" />
             <kd value="1" />
             <fdir1 value="1 0 0"/>
             <material>Gazebo/Gray</material>
         </gazebo>
+        <!-- <gazebo reference="wheel${prefix}_joint">
+            <stopKd value="1000000.0" />
+            <stopKp value="1000000.0" />
+        </gazebo> -->
         <transmission name="${prefix}_wheel_trans">
             <type>transmission_interface/SimpleTransmission</type>
             <joint name="wheel${prefix}_joint">

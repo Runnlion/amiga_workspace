@@ -14,11 +14,11 @@ class UGVController:
         self.target_pose = Pose()
         self.current_pose = Pose()
         
-        self.Kp_p = 2.0
+        self.Kp_p = 1.0
         self.Ki_p = 0.0
         self.Kd_p = 0.2
         
-        self.Kp_theta = 2.0
+        self.Kp_theta = 1.0
         self.Ki_theta = 0
         self.Kd_theta = 0.2
         
@@ -31,8 +31,8 @@ class UGVController:
         self.rate = rospy.Rate(self.hertz)
         self.time_interval:float = 1/self.hertz
         # Limits for linear and angular velocities
-        self.max_linear_vel = 2.0   # maximum linear velocity (m/s)
-        self.min_linear_vel = -2.0  # minimum linear velocity (m/s)
+        self.max_linear_vel = 1.0   # maximum linear velocity (m/s)
+        self.min_linear_vel = -1.0  # minimum linear velocity (m/s)
         self.max_angular_vel = 1.0  # maximum angular velocity (rad/s)
         self.min_angular_vel = -1.0 # minimum angular velocity (rad/s)
         self.linear_override = False
@@ -57,7 +57,7 @@ class UGVController:
             self.current_pose.orientation.w)
         _, _, yaw_current = tf.transformations.euler_from_quaternion(quaternion)
 
-        if(abs(error_p)<=0.03):
+        if(abs(error_p)<=0.1):
             self.finished = True
             return
         else:
@@ -183,11 +183,11 @@ class UGVController:
     def run(self):
         while not rospy.is_shutdown():
             if(not self.finished):
-                # self.compute_control()
-                self.compute_control_angle()
+                self.compute_control()
+                # self.compute_control_angle()
                 self.rate.sleep()
             else:
-                # self.compute_control_angle()
+                self.compute_control_angle()
                 # cmd_vel = Twist()
                 # cmd_vel.linear.x = 0
                 # cmd_vel.angular.z = 0
@@ -203,7 +203,7 @@ if __name__ == '__main__':
     
     # Set the target pose
     target_pose = Pose()
-    target_pose.position.x = 10.0
+    target_pose.position.x = 1.0
     target_pose.position.y = 0.0
     quaternion = tf.transformations.quaternion_from_euler(0, 0, math.pi)
     target_pose.orientation.x = quaternion[0]
