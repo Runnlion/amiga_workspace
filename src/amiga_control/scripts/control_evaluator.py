@@ -71,7 +71,7 @@ def plot_velocity_comparison(cmd_velocities, odom_velocities, odom_orientations,
     for _odom in odom_orientations:
         odom_yaw.append(tf.transformations.euler_from_quaternion(_odom)[2] / math.pi * 180.0 )
 
-    # cmd_linear, cmd_angular = zip(*cmd_velocities)
+    cmd_linear, cmd_angular = zip(*cmd_velocities)
     odom_linear, odom_angular = zip(*odom_velocities)
     
     # cmd_position_error.append(cmd_position_error[-1])
@@ -79,9 +79,9 @@ def plot_velocity_comparison(cmd_velocities, odom_velocities, odom_orientations,
 
     plt.figure(figsize=(15, 7))
     plt.subplot(3, 1, 1)
-    # plt.plot(cmd_timestamps, cmd_linear, label='cmd_vel Linear Velocity', color="blue")
+    plt.plot(cmd_timestamps, cmd_linear, label='cmd_vel Linear Velocity', color="blue")
     plt.plot(odom_timestamps, odom_linear, label='odom Linear Velocity', linestyle='--')
-    # plt.plot(cmd_timestamps, cmd_position_error, label='positional Error', color="red")
+    plt.plot(cmd_timestamps, cmd_position_error, label='positional Error', color="red")
     # plt.plot(cmd_timestamps[0,len(cmd_timestamps)-2], cmd_position_error, label='positional Error', color="red")
 
     plt.xlabel('Time')
@@ -90,9 +90,9 @@ def plot_velocity_comparison(cmd_velocities, odom_velocities, odom_orientations,
     plt.grid()
     
     plt.subplot(3, 1, 2)
-    # plt.plot(cmd_timestamps, cmd_angular, label='cmd_vel Angular Velocity',  color="blue")
+    plt.plot(cmd_timestamps, cmd_angular, label='cmd_vel Angular Velocity',  color="blue")
     plt.plot(odom_timestamps, odom_angular, label='odom Angular Velocity', linestyle='--')
-    # plt.plot(cmd_timestamps, cmd_angular_error, label='Angular Error', color="red")
+    plt.plot(cmd_timestamps, cmd_angular_error, label='Angular Error', color="red")
     # plt.plot(cmd_timestamps[0,len(cmd_timestamps)-2], cmd_angular_error, label='Angular Error', color="red")
 
     plt.xlabel('Time')
@@ -117,11 +117,11 @@ if __name__ == "__main__":
     
     # Path to the rosbag file
     # bag_file = '/mnt/Data/amiga_workspace/bag/PID/success_report_case_2.bag'
-    bag_file = '/mnt/Data/amiga_workspace/bag/PID/0709_success/pid_test_angular_p_2_d_0.2.bag'
+    bag_file = '/mnt/Data/amiga_workspace/bag/PID/0716/2024-07-14-04-49-09.bag'
     
     # Given points
-    point1 = (-12, 8.4)
-    point2 = (20, 0)
+    point1 = (0,0)
+    point2 = (5,5)
     
     # Case 3 -8,-13
     # Extract data from rosbag

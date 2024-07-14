@@ -6,7 +6,7 @@
   <arg name="generate_barriers" default="false" />
   <arg name="generate_tomatoes" default="false" />
   <arg name="generate_terrain" default="false" />
-  <arg name="visualization" default="true" />
+  <arg name="rviz_visualization" default="true" />
 
   <!-- Optionally enable teleop for the simulation -->
   <arg name="joystick" default="false" />
@@ -53,7 +53,7 @@
     <param name="link_name" value="dummy" />
   </node>
 
-  <group if="$(arg visualization)">
+  <group if="$(arg rviz_visualization)">
     <include file="$(find amiga_viz)/launch/view_amiga.launch">
     </include>
   </group>

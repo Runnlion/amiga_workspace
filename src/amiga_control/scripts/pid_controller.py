@@ -57,7 +57,7 @@ class UGVController:
             self.current_pose.orientation.w)
         _, _, yaw_current = tf.transformations.euler_from_quaternion(quaternion)
 
-        if(abs(error_p)<=0.1):
+        if(abs(error_p)<=0.03):
             self.finished = True
             return
         else:
@@ -203,8 +203,8 @@ if __name__ == '__main__':
     
     # Set the target pose
     target_pose = Pose()
-    target_pose.position.x = 1.0
-    target_pose.position.y = 0.0
+    target_pose.position.x = 2
+    target_pose.position.y = 2
     quaternion = tf.transformations.quaternion_from_euler(0, 0, math.pi)
     target_pose.orientation.x = quaternion[0]
     target_pose.orientation.y = quaternion[1]
@@ -213,3 +213,4 @@ if __name__ == '__main__':
     
     controller.set_target_pose(target_pose)
     controller.run()
+    # rosbag record /cmd_vel_stamped /joint_states /odom /imu
