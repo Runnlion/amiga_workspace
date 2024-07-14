@@ -40,9 +40,10 @@
     <xacro:property name="wheel_radius" value="0.215" />
     <xacro:property name="wheel_width" value="0.14" />
 
-    <xacro:property name="mu1" value="1" />
-    <xacro:property name="mu2" value="0.3" />
+    <xacro:property name="mu1" value="2" />
+    <xacro:property name="mu2" value="0.1" />
 
+    <xacro:property name="gpu_lidar" value="true"/>
     <xacro:macro name="inertia_wheel">
         <inertial>
             <origin xyz = "0 0 0" rpy="0 0 0"/>
@@ -172,8 +173,35 @@
     <joint name="navsat_joint" type="fixed">
         <parent link="body_link"/>
         <child link="navsat_link"/>
-        <origin xyz="0.5 0.0 0.6"/>
+        <origin xyz="0.5 0.1 0.65"/>
     </joint>
 
+    <link name="velodyne_holder_link">
+        <visual>
+            <geometry>
+                <cylinder length="0.2" radius="0.036"/>
+            </geometry>
+            <origin xyz="0 0 0.1"/>
+            <material name="black"/>
+        </visual>
+    </link>
+    <joint name="velodyne_holder_joint" type="fixed">
+        <parent link="body_link"/>
+        <child link="velodyne_holder_link"/>
+        <origin xyz="0.5 0.0 0.65"/>
+    </joint>
+    <!-- Add the Velodyne HDL-16 -->
+    <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/>
+    <xacro:VLP-16 parent="velodyne_holder_link" name="velodyne" topic="/velodyne_points" hz="10" samples="440" gpu="${gpu_lidar}">
+        <origin xyz="0.0 0.0 0.2" rpy="0 0 0" />
+    </xacro:VLP-16>
 
+    <!-- Add the Left Depth Camera -->
+  <xacro:include filename="$(find realsense2_description_gazebo)/urdf/_d435.urdf.xacro" />
+  <xacro:sensor_d435 name="camera_left" topics_ns="camera_left" parent="body_link" publish_pointcloud="true">
+    <origin xyz="0.5 -0.1 0.65" rpy="0 0 0.0" />
+  </xacro:sensor_d435>  
+  <!-- <xacro:sensor_d435 name="camera_right" topics_ns="camera_right" parent="front_center" publish_pointcloud="true">
+    <origin xyz="0.5 -0.13 0.0" rpy="0 0 -0.15" />
+  </xacro:sensor_d435>   -->
 </robot>

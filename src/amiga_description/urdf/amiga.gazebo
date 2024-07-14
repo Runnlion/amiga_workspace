@@ -4,30 +4,9 @@
     
     <gazebo reference = "body_link">
         <mu1>${mu1}</mu1>
-        <mu2>${mu1}</mu2>
+        <mu2>${mu2}</mu2>
         <!-- <material>Gazebo/Red</material> -->
     </gazebo>
-    <!-- <gazebo reference = "wheel1_link">
-        <mu1>${mu1}</mu1>
-        <mu2>${mu1}</mu2>
-        <material>Gazebo/Yellow</material>
-    </gazebo>
-    <gazebo reference = "wheel2_link">
-        <mu1>${mu1}</mu1>
-        <mu2>${mu1}</mu2>
-        <material>Gazebo/Yellow</material>
-    </gazebo>
-    <gazebo reference = "wheel3_link">
-        <mu1>${mu1}</mu1>
-        <mu2>${mu1}</mu2>
-        <material>Gazebo/Yellow</material>
-    </gazebo>
-    <gazebo reference = "wheel4_link">
-        <mu1>${mu1}</mu1>
-        <mu2>${mu1}</mu2>
-        <material>Gazebo/Yellow</material>
-    </gazebo> -->
-
     <gazebo>
         <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
             <robotNamespace></robotNamespace>
@@ -46,7 +25,7 @@
             <wheelSeparation>1.0</wheelSeparation>
             <wheelDiameter>${2 * wheel_link_radius}</wheelDiameter>
 
-            <torque>2500</torque>
+            <torque>5000</torque>
 
             <commandTopic>/twist_marker_server/cmd_vel</commandTopic>
             <odometryTopic>odom</odometryTopic>
@@ -106,4 +85,5 @@
             <drift>0.0001 0.0001 0.0001</drift>
         </plugin>
     </gazebo>
+
 </robot>
