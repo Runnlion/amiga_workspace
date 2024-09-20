@@ -7,3 +7,15 @@
 [submodule "src/orb_slam3_ros"]
 	path = src/orb_slam3_ros
 	url = https://github.com/thien94/orb_slam3_ros.git
+[submodule "src/CNN_SLAM"]
+	path = src/CNN_SLAM
+	url = https://github.com/iitmcvg/CNN_SLAM.git
+[submodule "src/rpg_svo"]
+	path = src/rpg_svo
+	url = https://github.com/uzh-rpg/rpg_svo.git
+[submodule "src/rpg_vikit"]
+	path = src/rpg_vikit
+	url = https://github.com/uzh-rpg/rpg_vikit.git
+[submodule "src/lsd_slam"]
+	path = src/lsd_slam
+	url = https://github.com/niobegrzegorzdec/lsd_slam.git

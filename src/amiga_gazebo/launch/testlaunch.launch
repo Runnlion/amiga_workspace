@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+
+  <rosparam command="load" file="$(find amiga_gazebo)/config/api_key_parameter.yaml" />
+  
+</launch>
