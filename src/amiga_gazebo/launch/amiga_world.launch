@@ -4,8 +4,8 @@
   <arg name="headless" default="false" />
   <arg name="paused" default="false" />
   <arg name="generate_barriers" default="false" />
-  <arg name="generate_tomatoes" default="false" />
-  <arg name="generate_terrain" default="false" />
+  <arg name="generate_tomatoes" default="true" />
+  <arg name="generate_terrain" default="true" />
   <arg name="rviz_visualization" default="true" />
 
   <!-- Optionally enable teleop for the simulation -->

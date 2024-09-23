@@ -8,3 +8,6 @@ bag/**
 src/amiga_gazebo/models/**
 src/amiga_gazebo/config/api_key_parameter.yaml
 src/amiga_gazebo/world/static_map_plugin.world
+**.bag**
+**.zip**
+extracted_images/**
