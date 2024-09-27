@@ -11,4 +11,4 @@ src/amiga_gazebo/world/static_map_plugin.world
 **.bag**
 **.zip**
 extracted_images/**
-realsense/**
+realsense_calib/**
